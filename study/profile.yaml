@@ -1,0 +1,20 @@
+version: 2
+exam:
+  name: 中国地质大学（武汉）2027研究生初试
+  subject: 830 计算机软件综合
+  exam_date: '2026-12-19'
+  date_basis: 初试首日；沿用原档案官方日期来源，专业课具体场次未录入
+  date_source: https://www.moe.gov.cn/jyb_xwfb/gzdt_gzdt/s5987/202609/t20260924_1451846.html
+goal:
+  target_score: null
+study:
+  start_date: '2026-10-08'
+  timezone: Asia/Shanghai
+  weekday_daily_max_hours: 4
+  weekend_max_hours: 12
+  weekend_scope: 待确认：每天还是两天合计
+  scope:
+  - '830'
+  excluded:
+  - 公共课
+  - 复试

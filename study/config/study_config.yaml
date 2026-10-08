@@ -1,0 +1,6 @@
+context_review_limit: 5
+context_knowledge_chars: 10000
+context_session_chars: 3000
+mastery_rule: 至少两个不同日期完整正确回答且无未解决错题；由助教依据独立复测证据申请更新
+progress_rule: 按大纲分解知识点等权计数，非试卷分值预测；提供提要不计覆盖
+xp_enabled: false

@@ -1,0 +1,96 @@
+# 830 个人学习仓库
+
+保留「讲解 → 出题 → 作答 → 批改 → 纠错 → 复测」流程。Python 小工具只负责保存、索引、恢复状态和展示反馈，不调用模型，不重新实现教学决策。
+
+## 在 Ubuntu 电脑安装
+
+代码和学习数据保存在 Git 仓库中。首次安装时运行：
+
+```bash
+cd ~
+git clone https://github.com/Aotumanaotu/830.git 830
+cd ~/830
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python study.py start
+python study.py context
+```
+
+如果 `~/830` 已是此仓库，先保存本机改动，再运行 `git pull --ff-only`；如果目录已有其他资料，请先另选目录克隆，勿覆盖。
+
+## 每次学习
+
+- `python study.py start`：先展示面板，同一自然日只展示一次鼓励。
+- `python study.py context`：当前知识、当前题目、最早到期的最多5项复习及最近2份日志。不会加载归档。
+- `python study.py get answers A0001`：读取指定记录。复习过多时按ID继续读取，不把全部历史输入模型。
+- `python study.py panel`：只看面板，不消耗当天鼓励。
+- `python study.py close`：汇总当天、更新当天唯一快照和日志。不把打开面板自动算学习，也不编造时长。
+- `python study.py check`：检查记录格式和关联。
+
+目前继续 **S001-1 结构体成员访问**。18份原始回答已迁移；E001—E005均待延迟复测。原始档案完整保留，详见 [迁移报告](study/migration_report.md)。
+
+## 写入接口（供助教/现有教学程序调用）
+
+```bash
+python study.py record questions /path/to/question.json
+python study.py record answers /path/to/answer.json
+python study.py record mistakes /path/to/mistake.json
+python study.py record reviews /path/to/review.json
+python study.py record topics /path/to/topic.json
+python study.py record sessions /path/to/session.json
+python study.py current S001-1
+```
+
+一个JSON文件一个完整对象。所有变更在进程锁内验证、追加完整JSONL行，然后更新小状态和统计。可导入 `Store`，但必须 `with store.lock():` 包围 append 和 refresh。
+
+原始回答可先存 `verdict: pending`，AI批改后用同一ID追加修订；`answer/question_id/attempt/created_at` 不允许改变。补交答案是新ID和更大的attempt，不能覆盖第一次答案。纠正批改时保留旧版本并在feedback说明。
+
+每种数据的样例和字段约束见 [数据约定](docs/data-model.md)。ID由助教选择未用编号（如P0019、A0019），工具拒绝重复题目和冲突attempt；历史P009-1等ID不重命名。题目文字不可覆盖，勘误另建题目并填写supersedes_id。
+
+## 文件职责
+
+| 路径 | 职责 |
+|---|---|
+| study/profile.yaml | 考试目标、首日日期、时区、时间上限；目标分未确认保持null |
+| study/state.yaml | 当前任务、派生进度、复习日期索引、统计摘要、鼓励展示日期 |
+| study/syllabus | 原大纲、知识点目录、知识点状态事件 |
+| study/knowledge | 按章节整理的概念与讲解；可独立检索 |
+| study/questions | 题库、用户每次回答及历次批改 |
+| study/mistakes、reviews | 错因、解决证据和复测排期 |
+| study/sessions | JSONL保存可统计事实；每天Markdown保存阅读用小结 |
+| study/motivation | 鼓励语、去重成就；无XP和商城 |
+| study/stats | 当前统计、每天一个逻辑快照 |
+| study/archive | 原始完整快照、SHA256、恢复备份 |
+
+## 进度规则与边界
+
+覆盖率=完成讲解知识点权重/大纲总权重；稳定掌握率=具有跨日完整正确作答证据且无开放错题的知识点权重/总权重。初版知识点等权，**不是试卷分值比例或预测成绩**。原有知识提要不代表已完成讲解。章节、学科与总体由同一目录聚合。
+
+历史记录仅支持局部入门专题已覆盖，稳定掌握尚为0。知识点状态由助教申请更新，程序检查至少两个不同日期的完整正确回答与未解决错题；助教仍需检查变式独立性、关联知识点和是否猜测，不把机器校验当作充分教学评估。
+
+正确率=完整正确作答/已批改作答；遗漏要求用incomplete，部分错误用partial，未批改pending不进分母。另保存submitted_values_correct用于解释历史数值结果。时长null表示未报告；known_duration_minutes仅统计已报告部分。
+
+有效session必须有回答ID或实际学习知识文件路径作为证据；同一天多次只计一个学习日。昨天学过今天尚未学时仍显示连续天数；中断一天后归零，最长连续纪录保留。使用北京时间。
+
+考试倒计时沿用原档案已记载的2026-12-19初试首日，动态计算；不是专业课具体开考时刻。专业课场次未录入。日期为空时显示待确认，过期时提示核对目标。工作日最多4小时；“周六周日12小时”每日或合计尚不明确，保留原话，不排满。
+
+## 安全、性能和恢复
+
+- JSONL追加版本，最新版本由可丢弃的 `.cache` 字节位置索引定位；正常追加增量更新索引，不重写历史。删除缓存后会单次流式重建。
+- 面板先读profile/state；上下文只读取当前知识及选中的记录。面板不会因历史增长扫描大档案。
+- 统计在写入后refresh时重算，计算量随记录数增长；这是个人规模下有意保留的简单实现。未来统计成为瓶颈再做增量聚合/SQLite，不增加当前维护成本。
+- state和统计用临时文件+fsync+原子替换；写入前放置dirty标记，意外中断后下次命令先重建派生状态。跨多个命令不承诺事务；答案已经安全保存后，可补建错题/复习。
+- `python study.py repair answers`：只隔离无换行尾部，先将原文件完整备份到archive；需要人工检查尾部是否有可救数据。中部坏行报错，绝不静默跳过。
+- `python study.py refresh`：手动编辑配置或恢复历史后重建派生状态。不要手改生成的统计数。手动修改JSONL后请运行check及refresh。
+- `close`会原子重写每日快照列表，保持每天一条；重新close更新当日。日终备注请写session.summary，再生成Markdown，避免手写日志被覆盖。
+- Git是长期备份手段：学习结束后审阅 `git diff`，再提交并推送。进程锁仅适用于单机；多机器先同步后学习，不同时写入同一仓库。
+
+迁移工具只对已核验SHA256的v1.18自动提取；其他Markdown只归档并出报告。初始诊断、未提交练习和未结构化内容仍在archive，无数据丢弃。重复迁移同快照无操作；新档案不会覆盖已有状态。
+
+```bash
+python scripts/migrate_study_archive.py /path/to/archive.md --root /path/to/new-study
+python -m unittest discover -s tests -v
+```
+
+后续SQLite直接按question/answer/mistake/review ID导入，revision作为版本；RAG优先knowledge/sessions/summaries，保留Subject/Topic和稳定文件名。当前不训练模型、不部署服务。

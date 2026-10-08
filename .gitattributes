@@ -1,0 +1,5 @@
+# 全仓库统一 LF：数据完整性依赖字节级一致（archive有SHA256校验，JSONL按字节索引）
+* text=auto eol=lf
+
+# 原始档案永不改写字节
+study/archive/** binary

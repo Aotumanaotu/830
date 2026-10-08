@@ -3,3 +3,4 @@
 {"id":"R0003","mistake_id":"E003","reason":"即时变式后进行独立延迟复测","due_date":"2026-10-09","status":"scheduled","review_count":0,"last_result":null,"created_at":"2026-10-08","updated_at":"2026-10-08T14:52:27.748995+08:00","revision":1}
 {"id":"R0004","mistake_id":"E004","reason":"即时变式后进行独立延迟复测","due_date":"2026-10-09","status":"scheduled","review_count":0,"last_result":null,"created_at":"2026-10-08","updated_at":"2026-10-08T14:52:27.776619+08:00","revision":1}
 {"id":"R0005","mistake_id":"E005","reason":"即时变式后进行独立延迟复测","due_date":"2026-10-09","status":"scheduled","review_count":0,"last_result":null,"created_at":"2026-10-08","updated_at":"2026-10-08T14:52:27.802452+08:00","revision":1}
+{"id":"R0006","mistake_id":"E006","reason":"即时变式后进行独立延迟复测","due_date":"2026-10-09","status":"scheduled","review_count":0,"last_result":null,"created_at":"2026-10-08T16:55:29.083686+08:00","updated_at":"2026-10-08T16:55:29.083698+08:00","revision":1}

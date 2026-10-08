@@ -14,7 +14,7 @@ def migrate(source,root):
     if not archive.exists(): archive.write_bytes(raw)
     manifest=root/'archive/migration_manifest.json'
     if manifest.exists():
-        if json.loads(manifest.read_text())['sha256']==sha: return '该快照已迁移，无重复写入。'
+        if json.loads(manifest.read_text('utf-8'))['sha256']==sha: return '该快照已迁移，无重复写入。'
         raise ValueError('已有迁移记录，新档案已归档；需要人工核对增量，未覆盖学习数据。')
     if sha != KNOWN:
         atomic(root/'migration_report.md',f'# 迁移报告\n\n未知格式；仅归档，迁移0条。SHA256: {sha}\n'); return '仅归档；未知格式不自动关联。'

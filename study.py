@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Local learning records. Python 3.10+, PyYAML; no network or model dependency."""
-import argparse, contextlib, datetime as dt, fcntl, json, os, tempfile
+import argparse, contextlib, datetime as dt, json, os, sys, tempfile
+if os.name=='nt':
+    import msvcrt
+    if hasattr(sys.stdout,'reconfigure'): sys.stdout.reconfigure(encoding='utf-8')
+else: import fcntl
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import yaml
@@ -18,9 +22,9 @@ def atomic(p, text):
     p.parent.mkdir(parents=True,exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=p.parent,prefix='.'+p.name)
     try:
-        with os.fdopen(fd,'w',encoding='utf-8') as f: f.write(text); f.flush(); os.fsync(f.fileno())
+        with os.fdopen(fd,'w',encoding='utf-8',newline='') as f: f.write(text); f.flush(); os.fsync(f.fileno())
         os.replace(tmp,p)
-        d=os.open(p.parent,os.O_RDONLY); os.fsync(d); os.close(d)
+        if os.name!='nt': d=os.open(p.parent,os.O_RDONLY); os.fsync(d); os.close(d)
     finally:
         if os.path.exists(tmp): os.unlink(tmp)
 def save_yaml(p,x): atomic(p,yaml.safe_dump(x,allow_unicode=True,sort_keys=False))
@@ -30,14 +34,19 @@ class Store:
     @contextlib.contextmanager
     def lock(self):
         with (self.root/'.study.lock').open('a') as f:
-            fcntl.flock(f,fcntl.LOCK_EX)
-            yield
+            if os.name=='nt':
+                f.seek(0); msvcrt.locking(f.fileno(),msvcrt.LK_LOCK,1)
+                try: yield
+                finally: f.seek(0); msvcrt.locking(f.fileno(),msvcrt.LK_UNLCK,1)
+            else:
+                fcntl.flock(f,fcntl.LOCK_EX)
+                yield
     def path(self,k): return self.root/TABLES[k]
     def index(self,k):
         p=self.path(k); cache=self.root/'.cache'/f'{k}.json'
         signature=[p.stat().st_size,p.stat().st_mtime_ns]
         if cache.exists():
-            c=json.loads(cache.read_text())
+            c=json.loads(cache.read_text('utf-8'))
             if c['signature']==signature: return c['offsets']
         offsets={}
         with p.open('rb') as f:
@@ -184,8 +193,8 @@ class Store:
         recent=sorted((self.root/'sessions').glob('????-??-??.md'),reverse=True)[:2]
         return {'current_question':q,'knowledge':content,'reviews':due,'mistakes':mistakes,'review_questions':[self.get('questions',m['question_id']) for m in mistakes], 'original_answers':[self.get('answers',m['answer_id']) for m in mistakes], 'recent_sessions':[p.read_text('utf-8')[:cfg['context_session_chars']] for p in recent], 'remaining_reviews':max(0,sum(d<=day.isoformat() for d in s['review']['schedule'].values())-len(due))}
     def close_day(self,day):
-        s=self.refresh(day); p=self.root/'stats/history.jsonl'; rows=[json.loads(x) for x in p.read_text().splitlines()]
-        snapshot=json.loads((self.root/'stats/summary.json').read_text())
+        s=self.refresh(day); p=self.root/'stats/history.jsonl'; rows=[json.loads(x) for x in p.read_text('utf-8').splitlines()]
+        snapshot=json.loads((self.root/'stats/summary.json').read_text('utf-8'))
         # One logical snapshot/day; closing again updates that day's snapshot atomically.
         before=next((r for r in reversed(rows) if r['date']<day.isoformat()),None)
         rows=[r for r in rows if r['date']!=day.isoformat()]+[snapshot]

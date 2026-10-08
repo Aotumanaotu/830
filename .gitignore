@@ -1,9 +1,13 @@
+# 平台无关的运行时产物，不入库
 .venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Local runtime artifacts
+# 可丢弃缓存与锁文件（README：缓存可随时重建）
 study/.cache/
 study/.study.lock
-
+study/.dirty
+.cache/
+.study.lock
+.dirty

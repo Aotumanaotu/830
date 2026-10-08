@@ -14,6 +14,7 @@ BASE=Path(__file__).resolve().parents[1]/'study'
 class StudyTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(); self.root=Path(self.tmp.name)/'study'; shutil.copytree(BASE,self.root); self.s=Store(self.root); self.day=dt.date(2026,10,8)
+        state=read_yaml(self.root/'state.yaml'); state['last_motivation_date']=None; save_yaml(self.root/'state.yaml',state)
     def tearDown(self): self.tmp.cleanup()
     def test_truth_and_links(self):
         self.assertEqual(len(self.s.all('answers')),18)
@@ -27,7 +28,6 @@ class StudyTests(unittest.TestCase):
         self.assertIn('72 天',self.s.panel(self.day))
         self.assertIn('今日复习 5 项',self.s.panel(self.day+dt.timedelta(days=1)))
         self.assertIn('连续学习 0 天',self.s.panel(self.day+dt.timedelta(days=2)))
-        state=read_yaml(self.root/'state.yaml'); state['last_motivation_date']=None; save_yaml(self.root/'state.yaml',state)
         self.assertGreater(len(self.s.panel(self.day,True)),len(self.s.panel(self.day,True)))
         profile=read_yaml(self.root/'profile.yaml'); profile['exam']['exam_date']=None
         self.assertIsNone(countdown(profile,self.day))
@@ -59,13 +59,13 @@ class StudyTests(unittest.TestCase):
         self.assertNotIn('版本变更',c['knowledge'])
     def test_snapshot_idempotent(self):
         self.s.close_day(self.day); self.s.close_day(self.day)
-        self.assertEqual(len((self.root/'stats/history.jsonl').read_text().splitlines()),1)
+        self.assertEqual(len((self.root/'stats/history.jsonl').read_text('utf-8').splitlines()),1)
     def test_archive_and_migration(self):
-        m=json.loads((self.root/'archive/migration_manifest.json').read_text()); src=self.root/m['archive']
+        m=json.loads((self.root/'archive/migration_manifest.json').read_text('utf-8')); src=self.root/m['archive']
         self.assertEqual(hashlib.sha256(src.read_bytes()).hexdigest(),m['sha256'])
         self.assertIn('无重复',migrate(src,self.root))
         fresh=Path(self.tmp.name)/'fresh'; migrate(src,fresh)
         self.assertEqual(len(Store(fresh).all('answers')),18)
-        unknown=Path(self.tmp.name)/'unknown.md'; unknown.write_text('未知档案：不能编造记录')
+        unknown=Path(self.tmp.name)/'unknown.md'; unknown.write_text('未知档案：不能编造记录',encoding='utf-8')
         other=Path(self.tmp.name)/'unknown'; self.assertIn('仅归档',migrate(unknown,other)); self.assertFalse((other/'profile.yaml').exists())
 if __name__=='__main__': unittest.main()

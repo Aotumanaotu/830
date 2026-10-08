@@ -1,10 +1,10 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 结构体
-  lesson: 结构体与结构体指针
+  chapter: 结构体及应用
+  lesson: 结构体定义与成员访问
   topic_id: C10.T1
-  next_task: S001-1
+  next_task: P0010
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-08'
 progress:
@@ -81,12 +81,12 @@ progress:
 statistics:
   learning_days: 1
   known_duration_minutes: 0
-  sessions_without_duration: 1
-  questions_answered: 18
-  attempts: 18
-  graded_attempts: 18
-  correct_rate: 0.3888888888888889
-  open_mistakes: 5
+  sessions_without_duration: 2
+  questions_answered: 20
+  attempts: 20
+  graded_attempts: 20
+  correct_rate: 0.4
+  open_mistakes: 6
   resolved_mistakes: 0
   repeated_mistakes: 0
   completed_reviews: 0
@@ -94,6 +94,7 @@ statistics:
     C03: 0.3333333333333333
     C08: 0.5
     C09: 0.3333333333333333
+    C10: 0.5
 study_streak:
   current: 1
   longest: 1
@@ -106,4 +107,5 @@ review:
     R0003: '2026-10-09'
     R0004: '2026-10-09'
     R0005: '2026-10-09'
-updated_at: '2026-10-08T14:52:30.137024+08:00'
+    R0006: '2026-10-09'
+updated_at: '2026-10-08T17:05:44.185237+08:00'

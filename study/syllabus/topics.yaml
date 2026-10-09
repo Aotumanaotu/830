@@ -652,3 +652,10 @@ topics:
   title: 结构体定义与成员访问
   weight: 1
   knowledge_file: knowledge/c_language/C10.md
+- id: C10.T2
+  subject: C语言
+  chapter: C10
+  chapter_title: 结构体及应用
+  title: 结构体传值与指针传参
+  weight: 1
+  knowledge_file: knowledge/c_language/C10.md

@@ -2,18 +2,18 @@ version: 2
 current_course:
   subject: C语言
   chapter: 结构体及应用
-  lesson: 结构体定义与成员访问
-  topic_id: C10.T1
-  next_task: P0010
+  lesson: 结构体传值与指针传参
+  topic_id: C10.T2
+  next_task: P0018
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-09'
 progress:
-  coverage: 0.0967741935483871
-  mastery: 0.0
+  coverage: 0.10638297872340426
+  mastery: 0.010638297872340425
   subjects:
     C语言:
-      coverage: 0.16981132075471697
-      mastery: 0.0
+      coverage: 0.18518518518518517
+      mastery: 0.018518518518518517
     数据结构:
       coverage: 0.0
       mastery: 0.0
@@ -41,12 +41,12 @@ progress:
       mastery: 0.0
     C08:
       coverage: 0.25
-      mastery: 0.0
+      mastery: 0.125
     C09:
       coverage: 0.4444444444444444
       mastery: 0.0
     C10:
-      coverage: 0.125
+      coverage: 0.2222222222222222
       mastery: 0.0
     C11:
       coverage: 0.0
@@ -79,33 +79,29 @@ progress:
       coverage: 0.0
       mastery: 0.0
 statistics:
-  learning_days: 1
+  learning_days: 2
   known_duration_minutes: 0
-  sessions_without_duration: 2
-  questions_answered: 20
-  attempts: 20
-  graded_attempts: 20
-  correct_rate: 0.4
-  open_mistakes: 6
-  resolved_mistakes: 0
-  repeated_mistakes: 0
-  completed_reviews: 0
+  sessions_without_duration: 4
+  questions_answered: 28
+  attempts: 28
+  graded_attempts: 28
+  correct_rate: 0.5
+  open_mistakes: 2
+  resolved_mistakes: 4
+  repeated_mistakes: 2
+  completed_reviews: 6
   chapter_correct_rate:
-    C03: 0.3333333333333333
-    C08: 0.5
-    C09: 0.3333333333333333
-    C10: 0.5
+    C03: 0.25
+    C08: 0.625
+    C09: 0.46153846153846156
+    C10: 0.6666666666666666
 study_streak:
-  current: 1
-  longest: 1
-  last_study_date: '2026-10-08'
-last_session: '2026-10-08'
+  current: 2
+  longest: 2
+  last_study_date: '2026-10-09'
+last_session: '2026-10-09'
 review:
   schedule:
-    R0001: '2026-10-09'
-    R0002: '2026-10-09'
-    R0003: '2026-10-09'
-    R0004: '2026-10-09'
-    R0005: '2026-10-09'
-    R0006: '2026-10-09'
-updated_at: '2026-10-08T17:05:44.185237+08:00'
+    R0007: '2026-10-10'
+    R0008: '2026-10-10'
+updated_at: '2026-10-09T14:05:57.483142+08:00'

@@ -11,3 +11,9 @@ study/.dirty
 .cache/
 .study.lock
 .dirty
+
+# Local originals (834 MB); versioned searchable extracts live in knowledge_base/corpus.
+/materiel/
+/materiel.zip
+/codex-session-*.md
+knowledge_base/.cache/

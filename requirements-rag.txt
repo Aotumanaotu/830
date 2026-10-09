@@ -1,0 +1,3 @@
+# Only needed to re-extract scanned source files; everyday retrieval uses requirements.txt.
+-r requirements.txt
+rapidocr-onnxruntime>=1.3,<2

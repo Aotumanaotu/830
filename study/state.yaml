@@ -6,7 +6,7 @@ current_course:
   topic_id: C10.T1
   next_task: P0010
   knowledge_file: knowledge/c_language/C10.md
-last_motivation_date: '2026-10-08'
+last_motivation_date: '2026-10-09'
 progress:
   coverage: 0.0967741935483871
   mastery: 0.0

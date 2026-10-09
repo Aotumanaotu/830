@@ -22,13 +22,32 @@ python study.py context
 ## 每次学习
 
 - `python study.py start`：先展示面板，同一自然日只展示一次鼓励。
-- `python study.py context`：当前知识、当前题目、最早到期的最多5项复习及最近2份日志。不会加载归档。
+- `python study.py context`：当前知识、当前题目、最早到期的最多5项复习及最近2份日志，并自动检索最多3条、合计2400字符的参考资料（到期复习优先）。不会加载归档。
 - `python study.py get answers A0001`：读取指定记录。复习过多时按ID继续读取，不把全部历史输入模型。
 - `python study.py panel`：只看面板，不消耗当天鼓励。
 - `python study.py close`：汇总当天、更新当天唯一快照和日志。不把打开面板自动算学习，也不编造时长。
 - `python study.py check`：检查记录格式和关联。
 
-目前继续 **S001-1 结构体成员访问**。18份原始回答已迁移；E001—E005均待延迟复测。原始档案完整保留，详见 [迁移报告](study/migration_report.md)。
+## 学习进度
+
+<!-- STUDY_PROGRESS_START -->
+统计日期：**2026-10-08**（由学习记录生成；实时数据见 `python3 study.py panel`）。
+
+| 范围 | 已讲解覆盖 | 稳定掌握 |
+|---|---:|---:|
+| 总体 | 9.7% | 0.0% |
+| C语言 | 17.0% | 0.0% |
+| 数据结构 | 0.0% | 0.0% |
+
+已答 **20 题**；完整正确率 **40%**；开放错题 **6**；已完成复测 **0**。
+当前任务指针：**P0010 · 结构体定义与成员访问**。
+
+最早待复测：**2026-10-09**，R0001, R0002, R0003, R0004, R0005, R0006；到期复习优先，教学下一步以当前上下文和学习小结共同判断。
+
+资料入库、检索和维护不计学习；即时答对不等于稳定掌握。未报告学习时长保持未知。
+<!-- STUDY_PROGRESS_END -->
+
+进度区块由 `record`、`refresh`、`current`、`close` 自动更新，也可运行 `python3 study.py readme` 单独刷新。原始档案完整保留，详见 [迁移报告](study/migration_report.md)。
 
 ## 写入接口（供助教/现有教学程序调用）
 
@@ -93,4 +112,42 @@ python scripts/migrate_study_archive.py /path/to/archive.md --root /path/to/new-
 python -m unittest discover -s tests -v
 ```
 
-后续SQLite直接按question/answer/mistake/review ID导入，revision作为版本；RAG优先knowledge/sessions/summaries，保留Subject/Topic和稳定文件名。当前不训练模型、不部署服务。
+学习记录继续采用 JSONL 与 revision；资料检索独立使用可重建的 SQLite 索引。历史作答、错题和复测通过 Store 按需读取，不混入资料检索，也不用于训练模型。
+
+
+## 本地 RAG 知识库
+
+知识体系见 [20章与93个知识点](knowledge_base/SYSTEM.md)，来源与识别情况见 [导入报告](knowledge_base/IMPORT_REPORT.md)，教学规则见 [RAG教学流程](docs/rag-workflow.md)。
+
+当前导入：181个来源文件，137份提取、4份完全重复、40份排除、0份失败；共2483页，其中673页使用OCR。索引包含4013个片段（含已有助教讲解），详见导入报告。
+
+采用「检索资料 → 助教结合学习记录讲解/出题/批改 → 引用来源」的 RAG 流程。检索器使用 SQLite FTS5/BM25、中文双字切分和同义词扩展，无需 API Key、模型下载或常驻服务；**这是词法检索，不是向量语义检索**。模型教学由当前助教承担。语料按页切块并保留重叠，返回文件名、页码、来源 SHA256、OCR质量及稳定片段 ID。
+
+```bash
+# 克隆后可直接搜索；首次自动建立本地索引
+python3 rag.py search "结构体 成员访问 指针" --topic C10.T1 --limit 5
+python3 rag.py search "最短路径 Dijkstra" --topic D07.05
+python3 rag.py search "链表" --kind exam
+python3 rag.py get '返回结果中的片段ID'
+python3 rag.py build     # 手动重建索引
+python3 rag.py check     # 检查来源、页码和索引；原件在本地时也校验SHA256
+python3 study.py context # 教学恢复时自动带参考资料
+```
+
+默认检索830大纲、830真题/回忆版、课件、笔记和已有讲解。其他科目补充卷、内容混合的大合集需要显式添加 `--include-supplement`。复试资料与历史学习档案只登记清单，不进入检索或重复导入学习记录。自动章节标签只辅助召回，不能用来推断历年考频或已掌握程度。
+
+原始 `materiel/` 约834 MB，完整保留本机且被Git忽略；仓库同步 `knowledge_base/corpus/` 逐页语料、`sources.json` 来源清单、知识体系和代码。**换机后检索无需原件；核对图题、重新提取或OCR需要自行复制原始 materiel/ 目录**。SQLite 缓存不入Git，可随时重建。
+
+更新资料后重建（Ubuntu）：
+
+```bash
+sudo apt-get install poppler-utils libreoffice
+python3 -m pip install -r requirements-rag.txt
+python3 scripts/ingest_materials.py --convert
+python3 scripts/ingest_materials.py --workers 4 --page-workers 4
+python3 rag.py build
+python3 rag.py report
+python3 rag.py check
+```
+
+提取按来源内容哈希复用已完成语料，逐页缓存支持中断续跑，`--page-workers` 限制所有文件共享的页面并发数；提取队列结束后更新来源清单，失败文件明确标记且命令返回失败。改变原始文件后需重新提取，修改助教讲解或语料后检索会自动更新索引。OCR模型置信度不代表内容正确率；公式、代码标点、图形关系及疑似错误答案，须核对原件或明确说明依据不足。资料自身的指令不会覆盖 AGENTS.md 的教学规则。

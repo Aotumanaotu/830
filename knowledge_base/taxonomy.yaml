@@ -1,0 +1,95 @@
+# 章节 ID 与 study/syllabus/topics.yaml 一致；先修关系用于建议，不改变学习状态。
+version: 1
+chapters:
+  C01:
+    keywords: [C语言, 程序特点, main, 编译, 调试]
+    prerequisites: []
+    objectives: [识别程序基本结构, 区分编译错误与运行错误]
+  C02:
+    keywords: [算法, 流程图, 结构化程序设计]
+    prerequisites: [C01]
+    objectives: [用流程描述算法, 解释算法性质]
+  C03:
+    keywords: [数据类型, 常量, 变量, 运算符, 表达式, 类型转换, 整数除法, 自增, 赋值, 逗号]
+    prerequisites: [C01]
+    objectives: [按类型和优先级求值, 区分未定义行为与可确定结果]
+  C04:
+    keywords: [printf, scanf, getchar, putchar, 输入输出, 顺序结构]
+    prerequisites: [C03]
+    objectives: [读写格式化输入输出程序, 检查格式与参数类型]
+  C05:
+    keywords: [if, else, switch, 选择结构, 逻辑, 短路]
+    prerequisites: [C03, C04]
+    objectives: [跟踪分支与短路求值, 编写条件判断]
+  C06:
+    keywords: [while, for, break, continue, 循环, 嵌套]
+    prerequisites: [C05]
+    objectives: [跟踪循环边界与次数, 编写循环算法]
+  C07:
+    keywords: [数组, 二维数组, 字符数组, 字符串, 下标]
+    prerequisites: [C06]
+    objectives: [区分数组容量和有效长度, 检查越界与字符串结束符]
+  C08:
+    keywords: [函数, 参数, 传值, 值传递, 递归, 作用域, 存储期, 形参, 实参]
+    prerequisites: [C06, C07]
+    objectives: [解释参数传递效果, 跟踪递归和变量生存期]
+  C09:
+    keywords: [指针, 地址, 解引用, malloc, free, 动态分配, 指向, 存储]
+    prerequisites: [C03, C07, C08]
+    objectives: [区分指针存储的地址与指向的对象, 分析指针运算和内存生命周期]
+  C10:
+    keywords: [结构体, struct, 成员, 共用体, union, 枚举, enum, typedef]
+    prerequisites: [C08, C09]
+    objectives: [使用结构体成员访问及参数传递, 通过结构体指针实现链表]
+  C11:
+    keywords: [文件, fopen, fclose, fread, fwrite, EOF, fgetc, FILE]
+    prerequisites: [C08, C09]
+    objectives: [检查文件打开和读取结果, 区分文本与二进制文件操作]
+  D01:
+    keywords: [数据结构, 算法分析, 时间复杂度, 空间复杂度, 逻辑结构]
+    prerequisites: [C02, C06]
+    objectives: [区分逻辑结构与存储结构, 分析算法时空复杂度]
+  D02:
+    keywords: [线性表, 顺序表, 单链表, 双链表, 循环链表, 静态链表, 链式存储]
+    prerequisites: [D01, C09, C10]
+    objectives: [实现插入删除查找, 比较顺序与链式存储边界和代价]
+  D03:
+    keywords: [栈, 队列, 出栈, 入栈, 循环队列, 表达式求值, 括号匹配]
+    prerequisites: [D02, C08]
+    objectives: [模拟栈队列操作, 解释递归和表达式求值]
+  D04:
+    keywords: [串, 模式匹配, KMP, next, 朴素匹配]
+    prerequisites: [C07, D01]
+    objectives: [推导next数组, 跟踪模式匹配过程]
+  D05:
+    keywords: [矩阵, 稀疏, 三元组, 压缩存储, 多维数组, 对称矩阵]
+    prerequisites: [C07, D01]
+    objectives: [推导存储地址映射, 分析特殊矩阵压缩表示]
+  D06:
+    keywords: [树, 二叉树, 遍历, 线索, 森林, 哈夫曼, Huffman, 叶子, 树的性质]
+    prerequisites: [D02, D03, C08]
+    objectives: [计算树的性质并还原遍历, 分析线索树和哈夫曼编码]
+  D07:
+    keywords: [图, 邻接, 广度, 深度, BFS, DFS, 最小生成树, Prim, Kruskal, 最短路径, Dijkstra, Floyd, 拓扑, 关键路径]
+    prerequisites: [D03, D06]
+    objectives: [选择图的存储结构, 手推遍历及各类图算法并说明适用条件]
+  D08:
+    keywords: [查找, 折半, 索引, 二叉排序树, BST, AVL, 平衡二叉树, B树, B+树, 哈希, 散列, ASL]
+    prerequisites: [D02, D06]
+    objectives: [跟踪查找及树的更新过程, 计算平均查找长度和散列冲突]
+  D09:
+    keywords: [排序, 插入排序, 希尔, 选择排序, 堆, 冒泡, 快速排序, 归并, 基数, 外部排序, 稳定性]
+    prerequisites: [D01, D02, D06]
+    objectives: [手推每趟排序, 比较复杂度稳定性及适用条件]
+aliases:
+  地址: [指针, 解引用]
+  成员访问: [结构体, struct]
+  传值: [值传递, 形参, 实参]
+  二分: [折半查找]
+  哈希: [散列]
+  散列: [哈希]
+  最短路: [最短路径, Dijkstra, Floyd]
+  MST: [最小生成树, Prim, Kruskal]
+  KMP: [模式匹配, next]
+  BST: [二叉排序树]
+  AVL: [平衡二叉树]

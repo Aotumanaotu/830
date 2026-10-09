@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Local learning records. Python 3.10+, PyYAML; no network or model dependency."""
-import argparse, contextlib, datetime as dt, json, os, sys, tempfile
+import argparse, contextlib, datetime as dt, json, os, sqlite3, sys, tempfile
 if os.name=='nt':
     import msvcrt
     if hasattr(sys.stdout,'reconfigure'): sys.stdout.reconfigure(encoding='utf-8')
@@ -191,7 +191,17 @@ class Store:
         mistakes=[self.get('mistakes',r['mistake_id']) for r in due]
         current=self.root/s['current_course']['knowledge_file']; content=current.read_text('utf-8')[:cfg['context_knowledge_chars']]
         recent=sorted((self.root/'sessions').glob('????-??-??.md'),reverse=True)[:2]
-        return {'current_question':q,'knowledge':content,'reviews':due,'mistakes':mistakes,'review_questions':[self.get('questions',m['question_id']) for m in mistakes], 'original_answers':[self.get('answers',m['answer_id']) for m in mistakes], 'recent_sessions':[p.read_text('utf-8')[:cfg['context_session_chars']] for p in recent], 'remaining_reviews':max(0,sum(d<=day.isoformat() for d in s['review']['schedule'].values())-len(due))}
+        from rag import search
+        topic_id = mistakes[0]['topic_id'] if mistakes else s['current_course']['topic_id']
+        topics = read_yaml(self.root/'syllabus/topics.yaml')['topics']
+        topic = next(t for t in topics if t['id'] == topic_id)
+        try:
+            references = search(topic['title'], topic=topic_id, limit=3, max_chars=2400,
+                                kb=self.root.parent/'knowledge_base', study_root=self.root)
+        except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+            references = {'status': 'unavailable', 'hits': [], 'error': str(exc),
+                          'hint': '资料索引暂不可用；运行 rag.py check 核对，不编造出处。'}
+        return {'references': references, 'reference_topic': topic_id, 'current_question':q,'knowledge':content,'reviews':due,'mistakes':mistakes,'review_questions':[self.get('questions',m['question_id']) for m in mistakes], 'original_answers':[self.get('answers',m['answer_id']) for m in mistakes], 'recent_sessions':[p.read_text('utf-8')[:cfg['context_session_chars']] for p in recent], 'remaining_reviews':max(0,sum(d<=day.isoformat() for d in s['review']['schedule'].values())-len(due))}
     def close_day(self,day):
         s=self.refresh(day); p=self.root/'stats/history.jsonl'; rows=[json.loads(x) for x in p.read_text('utf-8').splitlines()]
         snapshot=json.loads((self.root/'stats/summary.json').read_text('utf-8'))
@@ -221,7 +231,7 @@ def countdown(profile,day):
 def main():
     ap=argparse.ArgumentParser(description=__doc__); ap.add_argument('--root',default=str(Path(__file__).parent/'study')); ap.add_argument('--date',type=dt.date.fromisoformat,default=today())
     sub=ap.add_subparsers(dest='cmd',required=True)
-    for cmd in ('panel','start','context','refresh','close','check'): sub.add_parser(cmd)
+    for cmd in ('panel','start','context','refresh','close','check','readme'): sub.add_parser(cmd)
     rec=sub.add_parser('record'); rec.add_argument('kind',choices=TABLES); rec.add_argument('file',type=Path)
     get=sub.add_parser('get'); get.add_argument('kind',choices=TABLES); get.add_argument('id')
     current=sub.add_parser('current'); current.add_argument('question_id')
@@ -231,6 +241,9 @@ def main():
         if (s.root/'.dirty').exists() and args.cmd!='repair': s.refresh(args.date)
         if args.cmd in ('panel','start'): result=s.panel(args.date,args.cmd=='start')
         elif args.cmd=='context': result=s.context(args.date)
+        elif args.cmd=='readme':
+            from scripts.readme_progress import update
+            result='README进度已更新。' if update(s.root) else 'README缺少进度标记，未修改。'
         elif args.cmd=='get': result=s.get(args.kind,args.id)
         elif args.cmd=='current':
             q=s.get('questions',args.question_id)
@@ -246,6 +259,9 @@ def main():
             for k in TABLES:
                 for r in s.all(k): s.validate(k,r)
             result='所有最新记录格式与关联检查通过。'
+        if args.cmd in ('record', 'refresh', 'close', 'current'):
+            from scripts.readme_progress import update
+            update(s.root)
     print(result if isinstance(result,str) else json.dumps(result,ensure_ascii=False,indent=2))
 if __name__=='__main__':
     try: main()

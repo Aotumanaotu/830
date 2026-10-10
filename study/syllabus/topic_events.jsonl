@@ -106,3 +106,4 @@
 {"id":"C10.T2","status":"practicing","covered":true,"evidence":["A0028","A0033"],"lecture_source":"knowledge/c_language/C10.md","created_at":"2026-10-09T13:58:54.996384+08:00","updated_at":"2026-10-10T11:41:13.985445+08:00","revision":3}
 {"id":"C03.T2","status":"reviewing","covered":true,"evidence":["A0012","A0033","A0034"],"lecture_source":"archive/study_archive_07bbd1381669.md","created_at":"2026-10-08","updated_at":"2026-10-10T11:50:19.055592+08:00","revision":3}
 {"id":"C10.T2","status":"practicing","covered":true,"evidence":["A0028","A0033","A0034"],"lecture_source":"knowledge/c_language/C10.md","created_at":"2026-10-09T13:58:54.996384+08:00","updated_at":"2026-10-10T11:50:19.083487+08:00","revision":4}
+{"id":"C10.T2","status":"practicing","covered":true,"evidence":["A0028","A0033","A0034","A0035"],"lecture_source":"knowledge/c_language/C10.md","created_at":"2026-10-09T13:58:54.996384+08:00","updated_at":"2026-10-10T11:56:51.030834+08:00","revision":5}

@@ -14,7 +14,7 @@ python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 python study.py start
-python study.py context
+python study.py context --compact
 ```
 
 如果 `~/830` 已是此仓库，先保存本机改动，再运行 `git pull --ff-only`；如果目录已有其他资料，请先另选目录克隆，勿覆盖。
@@ -22,7 +22,8 @@ python study.py context
 ## 每次学习
 
 - `python study.py start`：先展示面板，同一自然日只展示一次鼓励。
-- `python study.py context`：当前知识、当前题目、最早到期的最多5项复习及最近2份日志，并自动检索最多3条、合计2400字符的参考资料（到期复习优先）。不会加载归档。
+- `python study.py context --compact`：日常恢复用。完整当前题目、最多3项到期错因和最近一段小结，不默认加载讲义或检索；同会话同考点直接复用已读内容。
+- `python study.py context`：新考点/疑点时展开当前知识、最多5项到期复习、最近2份日志及最多2400字符检索资料；不加载归档。
 - `python study.py get answers A0001`：读取指定记录。复习过多时按ID继续读取，不把全部历史输入模型。
 - `python study.py panel`：只看面板，不消耗当天鼓励。
 - `python study.py close`：汇总当天、更新当天唯一快照和日志。不把打开面板自动算学习，也不编造时长。
@@ -33,25 +34,35 @@ python study.py context
 <!-- STUDY_PROGRESS_START -->
 统计日期：**2026-10-10**（由学习记录生成；实时数据见 `python3 study.py panel`）。
 
+![总体与分科覆盖率、稳定掌握率](assets/study-progress.svg)
+
+![总体进度历史趋势](assets/study-trend.svg)
+
+<details>
+<summary>查看精确数值与当前任务</summary>
+
 | 范围 | 已讲解覆盖 | 稳定掌握 |
 |---|---:|---:|
 | 总体 | 10.6% | 1.1% |
 | C语言 | 18.5% | 1.9% |
 | 数据结构 | 0.0% | 0.0% |
 
-已答 **30 题**；完整正确率 **50%**；开放错题 **2**；已完成复测 **7**。
-当前任务指针：**P0021 · 指针自增与元素自增**。
+已答 **31 题**；完整正确率 **50%**；开放错题 **2**；已完成复测 **8**。
+当前任务指针：**P0022 · 结构体传值与指针传参**。
 
-最早待复测：**2026-10-10**，R0008；到期复习优先，教学下一步以当前上下文和学习小结共同判断。
+最早待复测：**2026-10-11**，R0009, R0010；到期复习优先，教学下一步以当前上下文和学习小结共同判断。
 
 资料入库、检索和维护不计学习；即时答对不等于稳定掌握。未报告学习时长保持未知。
+
+</details>
 <!-- STUDY_PROGRESS_END -->
 
-进度区块由 `record`、`refresh`、`current`、`close` 自动更新，也可运行 `python3 study.py readme` 单独刷新。原始档案完整保留，详见 [迁移报告](study/migration_report.md)。
+进度区块与SVG图表由 `record-batch`、`record`、`refresh`、`current`、`close` 自动更新，也可运行 `python3 study.py readme` 单独刷新。无需在线图表服务。原始档案完整保留，详见 [迁移报告](study/migration_report.md)。
 
 ## 写入接口（供助教/现有教学程序调用）
 
 ```bash
+python study.py record-batch /path/to/turn.json  # 推荐：整轮原始回答、批改及下一题，一次刷新
 python study.py record questions /path/to/question.json
 python study.py record answers /path/to/answer.json
 python study.py record mistakes /path/to/mistake.json
@@ -62,6 +73,8 @@ python study.py current S001-1
 ```
 
 一个JSON文件一个完整对象。所有变更在进程锁内验证、追加完整JSONL行，然后更新小状态和统计。可导入 `Store`，但必须 `with store.lock():` 包围 append 和 refresh。
+
+批量命令使用records数组和可选current_question，全部预检后依次追加，只刷新一次；原始pending和批改版本均保留。输入格式、精简读取与每轮一次同步见[快速学习流程](docs/fast-study-workflow.md)。
 
 原始回答可先存 `verdict: pending`，AI批改后用同一ID追加修订；`answer/question_id/attempt/created_at` 不允许改变。补交答案是新ID和更大的attempt，不能覆盖第一次答案。纠正批改时保留旧版本并在feedback说明。
 

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="496" viewBox="0 0 780 496" role="img" aria-labelledby="title desc">
+<title id="title">学习进度</title><desc id="desc">总体覆盖10.6%，稳定掌握1.1%；C语言覆盖18.5%，稳定掌握1.9%；数据结构覆盖0.0%，稳定掌握0.0%</desc>
+<style>text{font-family:system-ui,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#24334b}.muted{fill:#65758b}.blue{fill:#2563eb}.green{fill:#059669}</style>
+<rect width="100%" height="100%" rx="16" fill="#f8fafc"/>
+<text x="28" y="38" font-size="23" font-weight="700">830 · 学习进度</text>
+<text x="28" y="65" class="muted" font-size="13">统计日期 2026-10-10 · 距离考试 70 天</text>
+<rect x="28" y="84" width="166" height="82" rx="10" fill="#fff" stroke="#e2e8f0"/>
+<text x="42" y="109" class="muted" font-size="13">已答题目</text>
+<text x="42" y="144" font-size="27" font-weight="700">31<tspan font-size="13"> 题</tspan></text>
+<rect x="208" y="84" width="166" height="82" rx="10" fill="#fff" stroke="#e2e8f0"/>
+<text x="222" y="109" class="muted" font-size="13">连续学习</text>
+<text x="222" y="144" font-size="27" font-weight="700">3<tspan font-size="13"> 天</tspan></text>
+<rect x="388" y="84" width="166" height="82" rx="10" fill="#fff" stroke="#e2e8f0"/>
+<text x="402" y="109" class="muted" font-size="13">待解决错题</text>
+<text x="402" y="144" font-size="27" font-weight="700">2<tspan font-size="13"> 项</tspan></text>
+<rect x="568" y="84" width="166" height="82" rx="10" fill="#fff" stroke="#e2e8f0"/>
+<text x="582" y="109" class="muted" font-size="13">已完成复测</text>
+<text x="582" y="144" font-size="27" font-weight="700">8<tspan font-size="13"> 次</tspan></text>
+<circle cx="37" cy="193" r="5" fill="#2563eb"/><text x="49" y="198" font-size="13">已讲解覆盖</text>
+<circle cx="175" cy="193" r="5" fill="#059669"/><text x="187" y="198" font-size="13">稳定掌握</text>
+<text x="28" y="239" font-size="15" font-weight="600">总体</text>
+<rect x="150" y="223" width="490" height="13" rx="4" fill="#e2e8f0"/>
+<rect x="150" y="223" width="52.128" height="13" rx="3" fill="#2563eb"/>
+<text x="660" y="235" font-size="13">10.6%</text>
+<rect x="150" y="246" width="490" height="13" rx="4" fill="#e2e8f0"/>
+<rect x="150" y="246" width="5.213" height="13" rx="3" fill="#059669"/>
+<text x="660" y="258" font-size="13">1.1%</text>
+<text x="28" y="325" font-size="15" font-weight="600">C语言</text>
+<rect x="150" y="309" width="490" height="13" rx="4" fill="#e2e8f0"/>
+<rect x="150" y="309" width="90.741" height="13" rx="3" fill="#2563eb"/>
+<text x="660" y="321" font-size="13">18.5%</text>
+<rect x="150" y="332" width="490" height="13" rx="4" fill="#e2e8f0"/>
+<rect x="150" y="332" width="9.074" height="13" rx="3" fill="#059669"/>
+<text x="660" y="344" font-size="13">1.9%</text>
+<text x="28" y="411" font-size="15" font-weight="600">数据结构</text>
+<rect x="150" y="395" width="490" height="13" rx="4" fill="#e2e8f0"/>
+<text x="660" y="407" font-size="13">0.0%</text>
+<rect x="150" y="418" width="490" height="13" rx="4" fill="#e2e8f0"/>
+<text x="660" y="430" font-size="13">0.0%</text>
+<text x="28" y="480" class="muted" font-size="12">覆盖与掌握分别统计；即时订正不等于独立掌握。倒计时为统计日快照。</text>
+</svg>

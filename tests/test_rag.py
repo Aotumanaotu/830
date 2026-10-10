@@ -113,9 +113,11 @@ class RagTests(unittest.TestCase):
         shutil.copytree(BASE / 'study', self.study)
         s = Store(self.study)
         before = {k: s.path(k).read_bytes() for k in TABLES}
+        from study import read_yaml
+        due_day=dt.date.fromisoformat(min(read_yaml(self.study/'state.yaml')['review']['schedule'].values()))
         with s.lock():
-            current = s.context(dt.date(2026, 10, 8))
-            due = s.context(dt.date(2026, 10, 9))
+            current = s.context(due_day-dt.timedelta(days=1))
+            due = s.context(due_day)
         self.assertEqual(current['reference_topic'], current['current_question']['topic_id'])
         self.assertEqual(due['reference_topic'], due['mistakes'][0]['topic_id'])
         self.assertEqual(before, {k: s.path(k).read_bytes() for k in TABLES})

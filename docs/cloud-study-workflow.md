@@ -5,7 +5,7 @@ GitHub 仓库 Aotumanaotu/830 是学习记录的最新来源。云端工作区�
 ## 每次恢复
 
 1. 获取远程 main 的最新提交，读取 AGENTS.md。
-2. 运行 `python study.py start`，展示简洁面板，再运行 `python study.py context`。
+2. 新学习日/新会话运行 `python study.py start` 和 `python study.py context --compact`，展示一次简洁面板。会话内同考点复用已读资料，换考点/疑点再展开检索。
 3. 只加载当前知识、当前题目、到期复习和最近必要日志；完整归档按需查看。
 
 ## 每次记录
@@ -13,6 +13,8 @@ GitHub 仓库 Aotumanaotu/830 是学习记录的最新来源。云端工作区�
 用户回答必须保留原文，每次回答使用独立 ID 和 attempt；批改修订追加版本，不能覆盖原始回答。未知时长、分数和未提交内容保持未知。打开面板、修改项目配置不计作有效学习。
 
 完成一节后保存真实学习 session，更新当前任务；每日结束可运行 `close`。同步前运行 `check` 并审阅变更，提交后验证远程文件和提交 SHA。未成功同步时明确报告，不把工作副本保存说成仓库已保存。
+
+每轮变更优先用record-batch一次写入和刷新，每轮只生成一个提交。连接器优先一次create_tree内联全部变更内容，再create_commit和带expected_sha的update_ref，避免逐文件提交。流程与输入格式见[快速学习流程](fast-study-workflow.md)。用户已授权学习记录和本项目优化同步到Aotumanaotu/830。
 
 ## 并行修改
 

@@ -69,14 +69,19 @@ class Store:
             rows=[]
             for pos in offsets.values(): f.seek(pos); rows.append(json.loads(f.readline()))
         return rows
-    def append(self,k,row):
+    def prepare(self,k,row):
         row=dict(row); old=self.get(k,row['id'])
-        if old and all(old.get(a)==b for a,b in row.items()): return False
+        if old and k=='answers': row.setdefault('created_at',old['created_at'])
+        if old and all(old.get(a)==b for a,b in row.items()): return None
         if old and k in ('questions','achievements'): raise ValueError('该 ID 不可覆盖；使用新 ID')
         if old and k=='answers' and any(row.get(x)!=old.get(x) for x in ('question_id','answer','attempt','created_at')):
             raise ValueError('原始答案不可改写；批改修订须保留原文、题号、次数和提交日期')
         row.setdefault('created_at',stamp()); row['updated_at']=stamp(); row['revision']=(old or {}).get('revision',0)+1
         self.validate(k,row)
+        return row
+    def append(self,k,row):
+        row=self.prepare(k,row)
+        if row is None: return False
         # A single complete UTF-8 line under process lock; cache is disposable.
         offsets=self.index(k); pos=self.path(k).stat().st_size
         atomic(self.root/'.dirty','Derived state requires refresh\n')
@@ -86,6 +91,27 @@ class Store:
         p=self.path(k)
         atomic(self.root/'.cache'/f'{k}.json',dump({'signature':[p.stat().st_size,p.stat().st_mtime_ns],'offsets':offsets}))
         return True
+    def set_current(self,question_id):
+        q=self.get('questions',question_id)
+        if not q: raise ValueError('题目不存在')
+        topic=next(t for t in read_yaml(self.root/'syllabus/topics.yaml')['topics'] if t['id']==q['topic_id'])
+        state=read_yaml(self.root/'state.yaml'); state['current_course']={'subject':topic['subject'],'chapter':topic['chapter_title'],'lesson':topic['title'],'topic_id':topic['id'],'next_task':q['id'],'knowledge_file':topic['knowledge_file']}
+        save_yaml(self.root/'state.yaml',state)
+    def record_batch(self,payload,day):
+        # Caller holds lock. Preflight all ordered references before any append.
+        if not isinstance(payload,dict) or not isinstance(payload.get('records'),list): raise ValueError('batch.records 必须为数组')
+        if not 1<=len(payload['records'])<=100: raise ValueError('每批需1..100条记录')
+        preview=PreviewStore(self); planned=[]
+        for entry in payload['records']:
+            if not isinstance(entry,dict) or entry.get('kind') not in TABLES or not isinstance(entry.get('record'),dict): raise ValueError('每条需有效kind和record对象')
+            k=entry['kind']; row=preview.prepare(k,entry['record'])
+            if row is not None: preview.overlay.setdefault(k,{})[row['id']]=row; planned.append((k,row))
+        current=payload.get('current_question')
+        if current is not None and (not isinstance(current,str) or not preview.get('questions',current)): raise ValueError('current_question需指向已存在或本批新增的题目')
+        for k,row in planned: self.append(k,row)
+        if current is not None: self.set_current(current)
+        self.refresh(day)
+        return {'saved_records':len(planned),'current_question':current}
     def validate(self,k,r):
         if not isinstance(r.get('id'),str) or not r['id']: raise ValueError('id 必填')
         dt.datetime.fromisoformat(r['created_at'])
@@ -184,6 +210,18 @@ class Store:
             messages=read_yaml(self.root/'motivation/messages.yaml'); lines+=['',messages[category][day.toordinal()%len(messages[category])]]
             s['last_motivation_date']=day.isoformat(); save_yaml(self.root/'state.yaml',s)
         return '\n'.join(lines)
+    def compact_context(self,day):
+        state=read_yaml(self.root/'state.yaml'); course=state['current_course']
+        q=self.get('questions',course['next_task'])
+        ids=sorted(state['review']['schedule'],key=lambda i:(state['review']['schedule'][i],i))
+        due=[i for i in ids if state['review']['schedule'][i]<=day.isoformat()]
+        reviews=[]
+        for rid in due[:3]:
+            r=self.get('reviews',rid); m=self.get('mistakes',r['mistake_id'])
+            reviews.append({'id':rid,'due_date':r['due_date'],'mistake_id':m['id'],'topic_id':m['topic_id'],'reason':m['reason'][-400:],'last_review_note':m.get('immediate_review_note','')[-250:]})
+        recent=sorted((self.root/'sessions').glob('????-??-??.md'),reverse=True)[:1]
+        # No RAG/lecture/history replay on each answer. Expand only on demand.
+        return {'date':day.isoformat(),'current_course':course,'current_question':{k:q[k] for k in ('id','topic_id','question','source') if q and k in q} if q else None,'due_reviews':reviews,'remaining_reviews':max(0,len(due)-len(reviews)),'recent_note':recent[0].read_text('utf-8')[-700:] if recent else '', 'hint':'同一会话已读内容直接复用；新考点/疑点按需运行context或rag.py search。'}
     def context(self,day):
         s=read_yaml(self.root/'state.yaml'); q=self.get('questions',s['current_course']['next_task']); cfg=read_yaml(self.root/'config/study_config.yaml')
         ids=sorted(s['review']['schedule'],key=s['review']['schedule'].get)
@@ -225,13 +263,24 @@ class Store:
         backup=self.root/'archive'/f'{k}-tail-{dt.datetime.now().strftime("%Y%m%d%H%M%S%f")}.bin'
         backup.write_bytes(raw); atomic(p,raw[:end].decode('utf-8')); return f'完整原文件已备份：{backup}；不完整尾行已隔离，请人工核对。'
 
+class PreviewStore(Store):
+    """Read-through staged records; no file writes during batch preflight."""
+    def __init__(self,base): self.root=base.root; self.base=base; self.overlay={}; self.loaded={}
+    def get(self,k,id):
+        return self.overlay.get(k,{}).get(id) or self.base.get(k,id)
+    def all(self,k):
+        if k not in self.loaded: self.loaded[k]={r['id']:r for r in self.base.all(k)}
+        return list({**self.loaded[k],**self.overlay.get(k,{})}.values())
+
 def countdown(profile,day):
     value=profile['exam'].get('exam_date'); return (dt.date.fromisoformat(value)-day).days if value else None
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__); ap.add_argument('--root',default=str(Path(__file__).parent/'study')); ap.add_argument('--date',type=dt.date.fromisoformat,default=today())
     sub=ap.add_subparsers(dest='cmd',required=True)
-    for cmd in ('panel','start','context','refresh','close','check','readme'): sub.add_parser(cmd)
+    for cmd in ('panel','start','refresh','close','check','readme'): sub.add_parser(cmd)
+    ctx=sub.add_parser('context'); ctx.add_argument('--compact',action='store_true')
+    batch=sub.add_parser('record-batch'); batch.add_argument('file',type=Path)
     rec=sub.add_parser('record'); rec.add_argument('kind',choices=TABLES); rec.add_argument('file',type=Path)
     get=sub.add_parser('get'); get.add_argument('kind',choices=TABLES); get.add_argument('id')
     current=sub.add_parser('current'); current.add_argument('question_id')
@@ -240,17 +289,14 @@ def main():
     with s.lock():
         if (s.root/'.dirty').exists() and args.cmd!='repair': s.refresh(args.date)
         if args.cmd in ('panel','start'): result=s.panel(args.date,args.cmd=='start')
-        elif args.cmd=='context': result=s.context(args.date)
+        elif args.cmd=='context': result=s.compact_context(args.date) if args.compact else s.context(args.date)
+        elif args.cmd=='record-batch': result=s.record_batch(json.loads(args.file.read_text('utf-8')),args.date)
         elif args.cmd=='readme':
             from scripts.readme_progress import update
             result='README进度已更新。' if update(s.root) else 'README缺少进度标记，未修改。'
         elif args.cmd=='get': result=s.get(args.kind,args.id)
         elif args.cmd=='current':
-            q=s.get('questions',args.question_id)
-            if not q: raise ValueError('题目不存在')
-            topic=next(t for t in read_yaml(s.root/'syllabus/topics.yaml')['topics'] if t['id']==q['topic_id'])
-            state=read_yaml(s.root/'state.yaml'); state['current_course']={'subject':topic['subject'],'chapter':topic['chapter_title'],'lesson':topic['title'],'topic_id':topic['id'],'next_task':q['id'],'knowledge_file':topic['knowledge_file']}
-            save_yaml(s.root/'state.yaml',state); result='已切换当前学习任务。'
+            s.set_current(args.question_id); result='已切换当前学习任务。'
         elif args.cmd=='record': s.append(args.kind,json.loads(args.file.read_text('utf-8'))); s.refresh(args.date); result='已保存，状态已更新。'
         elif args.cmd=='refresh': result=s.refresh(args.date)
         elif args.cmd=='close': result=s.close_day(args.date)
@@ -259,7 +305,7 @@ def main():
             for k in TABLES:
                 for r in s.all(k): s.validate(k,r)
             result='所有最新记录格式与关联检查通过。'
-        if args.cmd in ('record', 'refresh', 'close', 'current'):
+        if args.cmd in ('record', 'record-batch', 'refresh', 'close', 'current'):
             from scripts.readme_progress import update
             update(s.root)
     print(result if isinstance(result,str) else json.dumps(result,ensure_ascii=False,indent=2))

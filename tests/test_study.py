@@ -24,6 +24,7 @@ class StudyTests(unittest.TestCase):
         for k in ('questions','answers','mistakes','reviews','topics','sessions'):
             for r in self.s.all(k): self.s.validate(k,r)
     def test_dates_streak_motivation(self):
+        self.s.refresh(self.day)
         self.assertIn('72 天',self.s.panel(self.day))
         due=sum(1 for d in read_yaml(self.root/'state.yaml')['review']['schedule'].values() if d<=(self.day+dt.timedelta(days=1)).isoformat())
         self.assertIn(f'今日复习 {due} 项',self.s.panel(self.day+dt.timedelta(days=1)))
@@ -33,6 +34,8 @@ class StudyTests(unittest.TestCase):
         self.assertIsNone(countdown(profile,self.day))
     def test_streak_same_day_and_gap(self):
         base=self.s.all('sessions')[0]
+        # Isolate these dates from later real learning sessions in the repository.
+        self.s.path('sessions').write_text(json.dumps({**base,'date':self.day.isoformat()},ensure_ascii=False)+'\n',encoding='utf-8')
         self.s.append('sessions',{**base,'id':'S_extra','summary':'第二课'})
         self.assertEqual(self.s.refresh(self.day)['study_streak']['current'],1)
         self.s.append('sessions',{**base,'id':'S20261009','date':'2026-10-09'})
@@ -58,8 +61,9 @@ class StudyTests(unittest.TestCase):
         c=self.s.context(dt.date(2026,10,9)); self.assertEqual(c['current_question']['id'],read_yaml(self.root/'state.yaml')['current_course']['next_task']); self.assertLessEqual(len(c['reviews']),5); self.assertLessEqual(len(c['recent_sessions']),2)
         self.assertNotIn('版本变更',c['knowledge'])
     def test_snapshot_idempotent(self):
-        self.s.close_day(self.day); self.s.close_day(self.day)
-        self.assertEqual(len((self.root/'stats/history.jsonl').read_text('utf-8').splitlines()),1)
+        self.s.close_day(self.day); first=(self.root/'stats/history.jsonl').read_text('utf-8'); self.s.close_day(self.day)
+        self.assertEqual(first,(self.root/'stats/history.jsonl').read_text('utf-8'))
+        self.assertEqual(sum(json.loads(line)['date']==self.day.isoformat() for line in first.splitlines()),1)
     def test_archive_and_migration(self):
         m=json.loads((self.root/'archive/migration_manifest.json').read_text('utf-8')); src=self.root/m['archive']
         self.assertEqual(hashlib.sha256(src.read_bytes()).hexdigest(),m['sha256'])

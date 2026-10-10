@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 指针
-  lesson: 指针自增与元素自增
-  topic_id: C09.T4
-  next_task: P0021
-  knowledge_file: knowledge/c_language/C09.md
+  chapter: 结构体及应用
+  lesson: 结构体传值与指针传参
+  topic_id: C10.T2
+  next_task: P0022
+  knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-10'
 progress:
   coverage: 0.10638297872340426
@@ -81,19 +81,19 @@ progress:
 statistics:
   learning_days: 3
   known_duration_minutes: 0
-  sessions_without_duration: 5
-  questions_answered: 30
-  attempts: 30
-  graded_attempts: 30
+  sessions_without_duration: 6
+  questions_answered: 31
+  attempts: 32
+  graded_attempts: 32
   correct_rate: 0.5
   open_mistakes: 2
   resolved_mistakes: 4
   repeated_mistakes: 2
-  completed_reviews: 7
+  completed_reviews: 8
   chapter_correct_rate:
     C03: 0.3333333333333333
     C08: 0.625
-    C09: 0.46153846153846156
+    C09: 0.4666666666666667
     C10: 0.6666666666666666
 study_streak:
   current: 3
@@ -102,6 +102,6 @@ study_streak:
 last_session: '2026-10-10'
 review:
   schedule:
-    R0008: '2026-10-10'
     R0009: '2026-10-11'
-updated_at: '2026-10-10T09:18:20.859920+08:00'
+    R0010: '2026-10-11'
+updated_at: '2026-10-10T11:11:33.059536+08:00'

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09",
+  "date": "2026-10-10",
   "learning_days": 2,
   "known_duration_minutes": 0,
   "sessions_without_duration": 4,
@@ -114,5 +114,5 @@
   "current": 2,
   "longest": 2,
   "last_study_date": "2026-10-09",
-  "days_to_exam": 71
+  "days_to_exam": 70
 }

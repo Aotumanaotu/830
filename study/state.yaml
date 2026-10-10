@@ -1,12 +1,12 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 结构体及应用
-  lesson: 结构体传值与指针传参
-  topic_id: C10.T2
-  next_task: P0018
-  knowledge_file: knowledge/c_language/C10.md
-last_motivation_date: '2026-10-09'
+  chapter: 数据类型、运算符与表达式
+  lesson: 整数除法与类型转换
+  topic_id: C03.T1
+  next_task: P0019
+  knowledge_file: knowledge/c_language/C03.md
+last_motivation_date: '2026-10-10'
 progress:
   coverage: 0.10638297872340426
   mastery: 0.010638297872340425
@@ -104,4 +104,4 @@ review:
   schedule:
     R0007: '2026-10-10'
     R0008: '2026-10-10'
-updated_at: '2026-10-09T14:05:57.483142+08:00'
+updated_at: '2026-10-10T08:48:04.446289+08:00'

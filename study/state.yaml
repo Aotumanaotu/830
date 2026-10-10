@@ -2,9 +2,9 @@ version: 2
 current_course:
   subject: C语言
   chapter: 结构体及应用
-  lesson: 结构体传值与指针传参
-  topic_id: C10.T2
-  next_task: P0025
+  lesson: 数组（除下列已拆分入门专题外的其余要求）
+  topic_id: C10.02
+  next_task: P0026
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-10'
 progress:
@@ -82,10 +82,10 @@ statistics:
   learning_days: 3
   known_duration_minutes: 0
   sessions_without_duration: 7
-  questions_answered: 34
-  attempts: 35
-  graded_attempts: 35
-  correct_rate: 0.5142857142857142
+  questions_answered: 35
+  attempts: 37
+  graded_attempts: 37
+  correct_rate: 0.4864864864864865
   open_mistakes: 3
   resolved_mistakes: 4
   repeated_mistakes: 2
@@ -94,7 +94,7 @@ statistics:
     C03: 0.42857142857142855
     C08: 0.625
     C09: 0.4666666666666667
-    C10: 0.6
+    C10: 0.42857142857142855
 study_streak:
   current: 3
   longest: 3
@@ -105,4 +105,4 @@ review:
     R0009: '2026-10-11'
     R0010: '2026-10-11'
     R0011: '2026-10-11'
-updated_at: '2026-10-10T11:56:51.136798+08:00'
+updated_at: '2026-10-10T12:10:29.848978+08:00'

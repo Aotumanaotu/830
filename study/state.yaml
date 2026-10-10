@@ -4,15 +4,15 @@ current_course:
   chapter: 结构体及应用
   lesson: 数组（除下列已拆分入门专题外的其余要求）
   topic_id: C10.02
-  next_task: P0028
+  next_task: P0029
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-10'
 progress:
-  coverage: 0.10638297872340426
+  coverage: 0.11702127659574468
   mastery: 0.010638297872340425
   subjects:
     C语言:
-      coverage: 0.18518518518518517
+      coverage: 0.2037037037037037
       mastery: 0.018518518518518517
     数据结构:
       coverage: 0.0
@@ -46,7 +46,7 @@ progress:
       coverage: 0.4444444444444444
       mastery: 0.0
     C10:
-      coverage: 0.2222222222222222
+      coverage: 0.3333333333333333
       mastery: 0.0
     C11:
       coverage: 0.0
@@ -81,11 +81,11 @@ progress:
 statistics:
   learning_days: 3
   known_duration_minutes: 0
-  sessions_without_duration: 7
-  questions_answered: 37
-  attempts: 39
-  graded_attempts: 39
-  correct_rate: 0.48717948717948717
+  sessions_without_duration: 8
+  questions_answered: 38
+  attempts: 40
+  graded_attempts: 40
+  correct_rate: 0.5
   open_mistakes: 4
   resolved_mistakes: 4
   repeated_mistakes: 2
@@ -94,7 +94,7 @@ statistics:
     C03: 0.42857142857142855
     C08: 0.625
     C09: 0.4666666666666667
-    C10: 0.4444444444444444
+    C10: 0.5
 study_streak:
   current: 3
   longest: 3
@@ -106,4 +106,4 @@ review:
     R0010: '2026-10-11'
     R0011: '2026-10-11'
     R0012: '2026-10-11'
-updated_at: '2026-10-10T13:45:15.781967+08:00'
+updated_at: '2026-10-10T13:55:38.892136+08:00'

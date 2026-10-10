@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 数据类型、运算符与表达式
-  lesson: 后缀自增与复合赋值
-  topic_id: C03.T2
-  next_task: P0023
-  knowledge_file: knowledge/c_language/C03.md
+  chapter: 结构体及应用
+  lesson: 结构体传值与指针传参
+  topic_id: C10.T2
+  next_task: P0024
+  knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-10'
 progress:
   coverage: 0.10638297872340426
@@ -81,17 +81,17 @@ progress:
 statistics:
   learning_days: 3
   known_duration_minutes: 0
-  sessions_without_duration: 6
-  questions_answered: 32
-  attempts: 33
-  graded_attempts: 33
-  correct_rate: 0.48484848484848486
+  sessions_without_duration: 7
+  questions_answered: 33
+  attempts: 34
+  graded_attempts: 34
+  correct_rate: 0.5
   open_mistakes: 3
   resolved_mistakes: 4
   repeated_mistakes: 2
   completed_reviews: 8
   chapter_correct_rate:
-    C03: 0.3333333333333333
+    C03: 0.42857142857142855
     C08: 0.625
     C09: 0.4666666666666667
     C10: 0.5
@@ -105,4 +105,4 @@ review:
     R0009: '2026-10-11'
     R0010: '2026-10-11'
     R0011: '2026-10-11'
-updated_at: '2026-10-10T11:41:14.070016+08:00'
+updated_at: '2026-10-10T11:50:19.173351+08:00'

@@ -4,7 +4,7 @@ current_course:
   chapter: 数据类型、运算符与表达式
   lesson: 整数除法与类型转换
   topic_id: C03.T1
-  next_task: P0019
+  next_task: P0020
   knowledge_file: knowledge/c_language/C03.md
 last_motivation_date: '2026-10-10'
 progress:
@@ -79,29 +79,29 @@ progress:
       coverage: 0.0
       mastery: 0.0
 statistics:
-  learning_days: 2
+  learning_days: 3
   known_duration_minutes: 0
-  sessions_without_duration: 4
-  questions_answered: 28
-  attempts: 28
-  graded_attempts: 28
-  correct_rate: 0.5
+  sessions_without_duration: 5
+  questions_answered: 29
+  attempts: 29
+  graded_attempts: 29
+  correct_rate: 0.4827586206896552
   open_mistakes: 2
   resolved_mistakes: 4
   repeated_mistakes: 2
-  completed_reviews: 6
+  completed_reviews: 7
   chapter_correct_rate:
-    C03: 0.25
+    C03: 0.2
     C08: 0.625
     C09: 0.46153846153846156
     C10: 0.6666666666666666
 study_streak:
-  current: 2
-  longest: 2
-  last_study_date: '2026-10-09'
-last_session: '2026-10-09'
+  current: 3
+  longest: 3
+  last_study_date: '2026-10-10'
+last_session: '2026-10-10'
 review:
   schedule:
-    R0007: '2026-10-10'
     R0008: '2026-10-10'
-updated_at: '2026-10-10T08:48:04.446289+08:00'
+    R0009: '2026-10-11'
+updated_at: '2026-10-10T09:09:49.975207+08:00'

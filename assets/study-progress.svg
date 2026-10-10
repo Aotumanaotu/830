@@ -6,7 +6,7 @@
 <text x="28" y="65" class="muted" font-size="13">统计日期 2026-10-10 · 距离考试 70 天</text>
 <rect x="28" y="84" width="166" height="82" rx="10" fill="#fff" stroke="#e2e8f0"/>
 <text x="42" y="109" class="muted" font-size="13">已答题目</text>
-<text x="42" y="144" font-size="27" font-weight="700">38<tspan font-size="13"> 题</tspan></text>
+<text x="42" y="144" font-size="27" font-weight="700">39<tspan font-size="13"> 题</tspan></text>
 <rect x="208" y="84" width="166" height="82" rx="10" fill="#fff" stroke="#e2e8f0"/>
 <text x="222" y="109" class="muted" font-size="13">连续学习</text>
 <text x="222" y="144" font-size="27" font-weight="700">3<tspan font-size="13"> 天</tspan></text>

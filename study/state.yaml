@@ -4,7 +4,7 @@ current_course:
   chapter: 结构体及应用
   lesson: 数组（除下列已拆分入门专题外的其余要求）
   topic_id: C10.02
-  next_task: P0029
+  next_task: P0030
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-10'
 progress:
@@ -82,9 +82,9 @@ statistics:
   learning_days: 3
   known_duration_minutes: 0
   sessions_without_duration: 8
-  questions_answered: 38
-  attempts: 40
-  graded_attempts: 40
+  questions_answered: 39
+  attempts: 42
+  graded_attempts: 42
   correct_rate: 0.5
   open_mistakes: 4
   resolved_mistakes: 4
@@ -106,4 +106,4 @@ review:
     R0010: '2026-10-11'
     R0011: '2026-10-11'
     R0012: '2026-10-11'
-updated_at: '2026-10-10T13:55:38.892136+08:00'
+updated_at: '2026-10-10T13:59:51.918950+08:00'

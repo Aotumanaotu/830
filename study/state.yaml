@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 数据类型、运算符与表达式
-  lesson: 整数除法与类型转换
-  topic_id: C03.T1
-  next_task: P0020
-  knowledge_file: knowledge/c_language/C03.md
+  chapter: 指针
+  lesson: 指针自增与元素自增
+  topic_id: C09.T4
+  next_task: P0021
+  knowledge_file: knowledge/c_language/C09.md
 last_motivation_date: '2026-10-10'
 progress:
   coverage: 0.10638297872340426
@@ -82,16 +82,16 @@ statistics:
   learning_days: 3
   known_duration_minutes: 0
   sessions_without_duration: 5
-  questions_answered: 29
-  attempts: 29
-  graded_attempts: 29
-  correct_rate: 0.4827586206896552
+  questions_answered: 30
+  attempts: 30
+  graded_attempts: 30
+  correct_rate: 0.5
   open_mistakes: 2
   resolved_mistakes: 4
   repeated_mistakes: 2
   completed_reviews: 7
   chapter_correct_rate:
-    C03: 0.2
+    C03: 0.3333333333333333
     C08: 0.625
     C09: 0.46153846153846156
     C10: 0.6666666666666666
@@ -104,4 +104,4 @@ review:
   schedule:
     R0008: '2026-10-10'
     R0009: '2026-10-11'
-updated_at: '2026-10-10T09:09:49.975207+08:00'
+updated_at: '2026-10-10T09:18:20.859920+08:00'

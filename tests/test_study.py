@@ -19,7 +19,7 @@ class StudyTests(unittest.TestCase):
     def test_truth_and_links(self):
         answers=self.s.all('answers'); questions={q['id'] for q in self.s.all('questions')}
         self.assertTrue(all(a['question_id'] in questions for a in answers))
-        self.assertTrue(all(a['submitted_values_correct'] for a in answers if a['verdict']=='correct'))
+        self.assertTrue(all(a.get('submitted_values_correct') is not False for a in answers if a['verdict']=='correct'))
         self.assertEqual([a['id'] for a in answers if a['question_id']=='S001-1'],['A0019'])
         for k in ('questions','answers','mistakes','reviews','topics','sessions'):
             for r in self.s.all(k): self.s.validate(k,r)

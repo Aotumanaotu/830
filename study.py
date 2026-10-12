@@ -131,6 +131,14 @@ class Store:
             for a in self.all('answers'):
                 if a['id']!=r['id'] and (a['question_id'],a['attempt'])==(r['question_id'],r['attempt']): raise ValueError('同题 attempt 重复')
             if r.get('score') is not None and not 0<=r['score']<=1: raise ValueError('score 需在 0..1')
+            results=r.get('review_results',{})
+            if not isinstance(results,dict): raise ValueError('review_results 必须为分项复测结果对象')
+            q=self.get('questions',r['question_id'])
+            for rid,result in results.items():
+                review=self.get('reviews',rid)
+                declared=review and any(t.get('review_id')==rid and t.get('mistake_id')==review['mistake_id'] and t.get('question_items') for t in q.get('review_targets',[]))
+                if r['verdict']=='pending' or result not in ('correct','partial','incorrect','incomplete') or not declared:
+                    raise ValueError('分项复测结果须关联题目明确声明的复习项及已批改回答')
         if k=='mistakes' and self.get('answers',r['answer_id'])['question_id']!=r['question_id']: raise ValueError('错题与答案题号不一致')
         if k=='reviews':
             dt.date.fromisoformat(r['due_date'])
@@ -158,7 +166,14 @@ class Store:
         if k=='mistakes' and r['status'] not in ('open','review','resolved'): raise ValueError('错题状态无效')
         if k=='mistakes' and r['status']=='resolved':
             a=self.get('answers',r.get('resolution_answer_id',''))
-            if not a or a['verdict']!='correct' or a['created_at'][:10]<=r['created_at'][:10]: raise ValueError('解决错题需后续日期完整正确回答')
+            if not a or a['created_at'][:10]<=r['created_at'][:10]: raise ValueError('解决错题需后续日期完整正确回答')
+            if a['verdict']!='correct':
+                # A joint exercise can fail elsewhere while this declared review target is fully correct.
+                rid=r.get('resolution_review_id'); review=self.get('reviews',rid) if rid else None
+                q=self.get('questions',a['question_id'])
+                scoped=a['verdict']=='partial' and review and review['mistake_id']==r['id'] and a.get('review_results',{}).get(rid)=='correct'
+                declared=any(t.get('review_id')==rid and t.get('mistake_id')==r['id'] and t.get('question_items') for t in q.get('review_targets',[]))
+                if not (scoped and declared): raise ValueError('解决错题需完整正确回答，或明确分项复测的完整正确证据')
     def refresh(self,day):
         state=read_yaml(self.root/'state.yaml'); profile=read_yaml(self.root/'profile.yaml')
         topics=read_yaml(self.root/'syllabus/topics.yaml')['topics']; updates={t['id']:t for t in self.all('topics')}

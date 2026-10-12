@@ -31,6 +31,8 @@ python3 study.py record-batch /path/to/turn.json
 
 批次不是跨文件数据库事务；磁盘失败或进程中断仍可能留下已追加行。保留既有`.dirty`恢复机制，恢复后核对ID/revision，勿盲目重放pending。老版单条record命令仍兼容。
 
+合并复测按考点保存结果：题目先在`review_targets`声明复习ID、错题ID和小问序号；批改回答的`review_results`逐项记录判定。整体答案仍为partial时，只能用明确声明且该项完整正确的证据结项对应错题，并填写`resolution_review_id`。另一项的错误、原文与整体判定保留；日期仍须晚于原错题日期。未声明、未批改、同日或本项不正确的证据均不能结项，topic的稳定掌握条件不变。
+
 ## 同步与图表
 
 每轮变更一次提交和一次推送；连接器将所有变更组成一个tree，用当前head为parent并以expected_sha更新main，出现并发更新先核对远程。同步前check与diff检查可放在同一次工具调用，推送后验证head。不要逐文件提交或强制推送。

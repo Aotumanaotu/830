@@ -4,7 +4,7 @@ current_course:
   chapter: 结构体及应用
   lesson: 结构体传值与指针传参
   topic_id: C10.T2
-  next_task: P0061
+  next_task: P0062
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-12'
 progress:
@@ -82,19 +82,19 @@ statistics:
   learning_days: 4
   known_duration_minutes: 0
   sessions_without_duration: 19
-  questions_answered: 69
-  attempts: 73
-  graded_attempts: 73
-  correct_rate: 0.5753424657534246
-  open_mistakes: 7
-  resolved_mistakes: 7
-  repeated_mistakes: 3
-  completed_reviews: 15
+  questions_answered: 70
+  attempts: 74
+  graded_attempts: 74
+  correct_rate: 0.5675675675675675
+  open_mistakes: 6
+  resolved_mistakes: 8
+  repeated_mistakes: 4
+  completed_reviews: 17
   chapter_correct_rate:
     C03: 0.5
     C08: 0.625
     C09: 0.5
-    C10: 0.6097560975609756
+    C10: 0.5952380952380952
 study_streak:
   current: 1
   longest: 3
@@ -102,11 +102,10 @@ study_streak:
 last_session: '2026-10-12'
 review:
   schedule:
-    R0016: '2026-10-11'
-    R0017: '2026-10-11'
     R0018: '2026-10-11'
     R0019: '2026-10-14'
     R0020: '2026-10-14'
     R0021: '2026-10-13'
     R0022: '2026-10-14'
-updated_at: '2026-10-12T21:27:53.006901+08:00'
+    R0023: '2026-10-13'
+updated_at: '2026-10-12T21:40:44.764255+08:00'

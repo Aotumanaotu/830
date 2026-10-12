@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 数据类型、运算符与表达式
-  lesson: 整数除法与类型转换
-  topic_id: C03.T1
-  next_task: P0054
-  knowledge_file: knowledge/c_language/C03.md
+  chapter: 指针
+  lesson: 指针自增与元素自增
+  topic_id: C09.T4
+  next_task: P0055
+  knowledge_file: knowledge/c_language/C09.md
 last_motivation_date: '2026-10-12'
 progress:
   coverage: 0.11702127659574468
@@ -79,30 +79,29 @@ progress:
       coverage: 0.0
       mastery: 0.0
 statistics:
-  learning_days: 3
+  learning_days: 4
   known_duration_minutes: 0
-  sessions_without_duration: 14
-  questions_answered: 62
-  attempts: 65
-  graded_attempts: 65
-  correct_rate: 0.5846153846153846
-  open_mistakes: 10
-  resolved_mistakes: 4
+  sessions_without_duration: 15
+  questions_answered: 63
+  attempts: 66
+  graded_attempts: 66
+  correct_rate: 0.5909090909090909
+  open_mistakes: 9
+  resolved_mistakes: 5
   repeated_mistakes: 2
-  completed_reviews: 8
+  completed_reviews: 9
   chapter_correct_rate:
-    C03: 0.42857142857142855
+    C03: 0.5
     C08: 0.625
     C09: 0.4666666666666667
     C10: 0.6571428571428571
 study_streak:
-  current: 0
+  current: 1
   longest: 3
-  last_study_date: '2026-10-10'
-last_session: '2026-10-10'
+  last_study_date: '2026-10-12'
+last_session: '2026-10-12'
 review:
   schedule:
-    R0009: '2026-10-11'
     R0010: '2026-10-11'
     R0011: '2026-10-11'
     R0012: '2026-10-11'
@@ -112,4 +111,4 @@ review:
     R0016: '2026-10-11'
     R0017: '2026-10-11'
     R0018: '2026-10-11'
-updated_at: '2026-10-12T09:11:03.552696+08:00'
+updated_at: '2026-10-12T09:23:35.966986+08:00'

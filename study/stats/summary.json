@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-10",
+  "date": "2026-10-12",
   "learning_days": 3,
   "known_duration_minutes": 0,
   "sessions_without_duration": 14,
@@ -111,8 +111,8 @@
       "mastery": 0.0
     }
   },
-  "current": 3,
+  "current": 0,
   "longest": 3,
   "last_study_date": "2026-10-10",
-  "days_to_exam": 70
+  "days_to_exam": 68
 }

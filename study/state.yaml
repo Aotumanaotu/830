@@ -4,7 +4,7 @@ current_course:
   chapter: 结构体及应用
   lesson: 链表（除下列已拆分入门专题外的其余要求）
   topic_id: C10.04
-  next_task: P0059
+  next_task: P0060
   knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-12'
 progress:
@@ -82,19 +82,19 @@ statistics:
   learning_days: 4
   known_duration_minutes: 0
   sessions_without_duration: 18
-  questions_answered: 67
-  attempts: 70
-  graded_attempts: 70
-  correct_rate: 0.5857142857142857
+  questions_answered: 68
+  attempts: 72
+  graded_attempts: 72
+  correct_rate: 0.5694444444444444
   open_mistakes: 7
   resolved_mistakes: 7
-  repeated_mistakes: 2
-  completed_reviews: 13
+  repeated_mistakes: 3
+  completed_reviews: 15
   chapter_correct_rate:
     C03: 0.5
     C08: 0.625
     C09: 0.5
-    C10: 0.631578947368421
+    C10: 0.6
 study_streak:
   current: 1
   longest: 3
@@ -102,11 +102,11 @@ study_streak:
 last_session: '2026-10-12'
 review:
   schedule:
-    R0014: '2026-10-11'
-    R0015: '2026-10-11'
     R0016: '2026-10-11'
     R0017: '2026-10-11'
     R0018: '2026-10-11'
     R0019: '2026-10-14'
     R0020: '2026-10-14'
-updated_at: '2026-10-12T11:55:34.894333+08:00'
+    R0021: '2026-10-13'
+    R0022: '2026-10-14'
+updated_at: '2026-10-12T21:22:18.396015+08:00'

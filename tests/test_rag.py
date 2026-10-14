@@ -27,7 +27,7 @@ class RagTests(unittest.TestCase):
         row = dict(source_id=sid, source_sha256='x', page=1, locator='page', method=method,
                    quality='needs_visual_check' if method == 'ocr' else 'text_extracted', ocr_confidence=.8 if method == 'ocr' else None, text=text)
         raw = json.dumps(row, ensure_ascii=False) + '\n'
-        (self.kb / f'corpus/{sid}.jsonl').write_text(raw, encoding='utf-8')
+        (self.kb / f'corpus/{sid}.jsonl').write_bytes(raw.encode('utf-8'))
         self.sources.append(dict(id=sid, sha256='x', title=title, path=f'materiel/{title}.pdf', kind=kind, status='indexed', pages=1, corpus=f'corpus/{sid}.jsonl', corpus_sha256=hashlib.sha256(raw.encode()).hexdigest()))
     def write_manifest(self): (self.kb / 'sources.json').write_text(json.dumps({'sources': self.sources}), encoding='utf-8')
     def search(self, query, **kwargs): return rag.search(query, kb=self.kb, study_root=self.study, **kwargs)
@@ -89,7 +89,7 @@ class RagTests(unittest.TestCase):
                 recognize.assert_called_once_with(source, 2)
     def test_corpus_tampering_detected(self):
         p = self.kb / 'corpus/SRC-a.jsonl'
-        p.write_text(p.read_text('utf-8').replace('结构体', '错误内容'), encoding='utf-8')
+        p.write_bytes(p.read_bytes().replace('结构体'.encode(), '错误内容'.encode()))
         with self.assertRaisesRegex(ValueError, '语料指纹'):
             rag.check(self.kb, self.study)
     def test_parallel_extraction_preserves_page_provenance(self):

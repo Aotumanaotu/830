@@ -2,6 +2,7 @@
 """Offline, source-grounded retrieval for 830 tutoring (SQLite FTS5/BM25)."""
 import argparse
 from collections import Counter
+import contextlib
 import hashlib
 import json
 from pathlib import Path
@@ -114,16 +115,22 @@ def build(kb=DEFAULT_KB, study_root=BASE / 'study'):
     return {'chunks': count, 'engine': 'SQLite FTS5 / BM25 + Chinese bigrams', 'index': str(cache / 'index.sqlite3')}
 
 
+@contextlib.contextmanager
 def connect(kb, study_root):
     path = kb / '.cache/index.sqlite3'
     valid = False
     if path.exists():
         try:
-            with sqlite3.connect(path) as db: valid = db.execute('SELECT signature FROM meta').fetchone()[0] == signature(kb, study_root)
+            probe = sqlite3.connect(path)
+            try: valid = probe.execute('SELECT signature FROM meta').fetchone()[0] == signature(kb, study_root)
+            finally: probe.close()
         except sqlite3.Error: pass
     if not valid: build(kb, study_root)
     db = sqlite3.connect(path); db.row_factory = sqlite3.Row
-    return db
+    # sqlite3's own context manager never closes; without a real close, Windows
+    # refuses to delete/replace the file later (Linux tolerates open handles).
+    try: yield db
+    finally: db.close()
 
 
 def search(query, topic=None, limit=5, include_supplement=False, kind=None, kb=DEFAULT_KB, study_root=BASE / 'study', max_chars=5000):

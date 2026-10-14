@@ -25,11 +25,11 @@ class FastWorkflowTests(unittest.TestCase):
         a={'id':'A_TEST_BATCH','question_id':q['id'],'attempt':1,'answer':'真实测试输入','verdict':'pending'}
         return {'records':[{'kind':'questions','record':q},{'kind':'answers','record':a},{'kind':'answers','record':{**a,'verdict':'correct','submitted_values_correct':True}}], 'current_question':q['id']}
     def test_batch_preserves_pending_and_grading_one_refresh(self):
-        raw=self.s.path('answers').read_text()
+        raw=self.s.path('answers').read_text('utf-8')
         with self.s.lock(),patch.object(self.s,'refresh',wraps=self.s.refresh) as refresh:
             result=self.s.record_batch(self.payload(),self.day)
         self.assertEqual(result['saved_records'],3); self.assertEqual(refresh.call_count,1)
-        added=[json.loads(line) for line in self.s.path('answers').read_text()[len(raw):].splitlines()]
+        added=[json.loads(line) for line in self.s.path('answers').read_text('utf-8')[len(raw):].splitlines()]
         self.assertEqual([a['verdict'] for a in added],['pending','correct'])
         self.assertEqual(added[0]['answer'],added[1]['answer']); self.assertEqual(added[0]['created_at'],added[1]['created_at'])
         self.assertEqual(read_yaml(self.root/'state.yaml')['current_course']['next_task'],'P_TEST_BATCH')
@@ -54,13 +54,13 @@ class FastWorkflowTests(unittest.TestCase):
         self.assertNotIn('knowledge',compact); self.assertNotIn('original_answers',compact)
         self.assertLessEqual(len(compact['due_reviews']),3)
     def test_svg_exact_metrics_valid_xml_and_idempotent(self):
-        readme=self.root.parent/'README.md'; readme.write_text('<!-- STUDY_PROGRESS_START -->old<!-- STUDY_PROGRESS_END -->')
+        readme=self.root.parent/'README.md'; readme.write_text('<!-- STUDY_PROGRESS_START -->old<!-- STUDY_PROGRESS_END -->',encoding='utf-8')
         state_before=(self.root/'state.yaml').read_bytes();update(self.root)
         assets=list((self.root.parent/'assets').glob('*.svg')); self.assertEqual(len(assets),2)
-        for p in assets: ElementTree.fromstring(p.read_text())
-        overview=(self.root.parent/'assets/study-progress.svg').read_text()
+        for p in assets: ElementTree.fromstring(p.read_text('utf-8'))
+        overview=(self.root.parent/'assets/study-progress.svg').read_text('utf-8')
         self.assertIn(f"{read_yaml(self.root/'state.yaml')['progress']['coverage']*100:.1f}%",overview)
-        self.assertIn('assets/study-progress.svg',readme.read_text())
+        self.assertIn('assets/study-progress.svg',readme.read_text('utf-8'))
         before={p:p.stat().st_mtime_ns for p in [readme,*assets]};update(self.root)
         self.assertEqual(before,{p:p.stat().st_mtime_ns for p in before})
         self.assertEqual(state_before,(self.root/'state.yaml').read_bytes())

@@ -2,11 +2,11 @@ version: 2
 current_course:
   subject: C语言
   chapter: 结构体及应用
-  lesson: 链表（除下列已拆分入门专题外的其余要求）
-  topic_id: C10.04
-  next_task: P0053
+  lesson: 数组（除下列已拆分入门专题外的其余要求）
+  topic_id: C10.02
+  next_task: P0068
   knowledge_file: knowledge/c_language/C10.md
-last_motivation_date: '2026-10-14'
+last_motivation_date: '2026-10-15'
 progress:
   coverage: 0.11702127659574468
   mastery: 0.010638297872340425
@@ -96,7 +96,7 @@ statistics:
     C09: 0.5294117647058824
     C10: 0.5531914893617021
 study_streak:
-  current: 1
+  current: 0
   longest: 3
   last_study_date: '2026-10-12'
 last_session: '2026-10-12'
@@ -108,4 +108,4 @@ review:
     R0024: '2026-10-14'
     R0025: '2026-10-14'
     R0026: '2026-10-14'
-updated_at: '2026-10-13T13:49:38.658091+08:00'
+updated_at: '2026-10-15T08:51:47.138295+08:00'

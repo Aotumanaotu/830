@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: C语言
-  chapter: 指针
-  lesson: 地址与解引用
-  topic_id: C09.T1
-  next_task: P0073
-  knowledge_file: knowledge/c_language/C09.md
+  chapter: 结构体及应用
+  lesson: 结构体传值与指针传参
+  topic_id: C10.T2
+  next_task: P0074
+  knowledge_file: knowledge/c_language/C10.md
 last_motivation_date: '2026-10-19'
 progress:
   coverage: 0.11702127659574468
@@ -81,19 +81,19 @@ progress:
 statistics:
   learning_days: 6
   known_duration_minutes: 0
-  sessions_without_duration: 22
-  questions_answered: 81
-  attempts: 85
-  graded_attempts: 85
-  correct_rate: 0.5411764705882353
-  open_mistakes: 4
-  resolved_mistakes: 11
+  sessions_without_duration: 23
+  questions_answered: 82
+  attempts: 86
+  graded_attempts: 86
+  correct_rate: 0.5465116279069767
+  open_mistakes: 3
+  resolved_mistakes: 12
   repeated_mistakes: 6
-  completed_reviews: 23
+  completed_reviews: 24
   chapter_correct_rate:
     C03: 0.5
     C08: 0.625
-    C09: 0.5294117647058824
+    C09: 0.5555555555555556
     C10: 0.54
 study_streak:
   current: 1
@@ -102,8 +102,7 @@ study_streak:
 last_session: '2026-10-19'
 review:
   schedule:
-    R0024: '2026-10-14'
     R0025: '2026-10-14'
     R0026: '2026-10-14'
     R0027: '2026-10-20'
-updated_at: '2026-10-19T15:13:06.803502+08:00'
+updated_at: '2026-10-19T15:20:05.398063+08:00'

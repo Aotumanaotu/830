@@ -1,12 +1,12 @@
 version: 2
 current_course:
-  subject: C语言
-  chapter: 结构体及应用
-  lesson: 链表（除下列已拆分入门专题外的其余要求）
-  topic_id: C10.04
-  next_task: P0078
-  knowledge_file: knowledge/c_language/C10.md
-last_motivation_date: '2026-10-19'
+  subject: 数据结构
+  chapter: 绪论
+  lesson: 算法描述与分析
+  topic_id: D01.02
+  next_task: P0106
+  knowledge_file: knowledge/data_structure/D01.md
+last_motivation_date: '2026-10-30'
 progress:
   coverage: 0.11702127659574468
   mastery: 0.010638297872340425
@@ -79,30 +79,28 @@ progress:
       coverage: 0.0
       mastery: 0.0
 statistics:
-  learning_days: 6
+  learning_days: 9
   known_duration_minutes: 0
-  sessions_without_duration: 24
-  questions_answered: 86
-  attempts: 90
-  graded_attempts: 90
-  correct_rate: 0.5444444444444444
-  open_mistakes: 3
-  resolved_mistakes: 12
+  sessions_without_duration: 44
+  questions_answered: 115
+  attempts: 119
+  graded_attempts: 119
+  correct_rate: 0.6134453781512605
+  open_mistakes: 0
+  resolved_mistakes: 18
   repeated_mistakes: 6
-  completed_reviews: 26
+  completed_reviews: 33
   chapter_correct_rate:
-    C03: 0.5
+    C03: 0.5384615384615384
     C08: 0.625
     C09: 0.5555555555555556
-    C10: 0.5370370370370371
+    C10: 0.6216216216216216
+    D01: 0.8333333333333334
 study_streak:
   current: 1
   longest: 3
-  last_study_date: '2026-10-19'
-last_session: '2026-10-19'
+  last_study_date: '2026-10-30'
+last_session: '2026-10-30'
 review:
-  schedule:
-    R0027: '2026-10-20'
-    R0028: '2026-10-20'
-    R0029: '2026-10-20'
-updated_at: '2026-10-19T15:50:14.108643+08:00'
+  schedule: {}
+updated_at: '2026-10-30T19:46:20.401740+08:00'

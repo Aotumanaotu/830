@@ -4,7 +4,7 @@ current_course:
   chapter: 绪论
   lesson: 算法描述与分析
   topic_id: D01.02
-  next_task: P0113
+  next_task: P0114
   knowledge_file: knowledge/data_structure/D01.md
 last_motivation_date: '2026-11-02'
 progress:
@@ -82,11 +82,11 @@ statistics:
   learning_days: 10
   known_duration_minutes: 0
   sessions_without_duration: 50
-  questions_answered: 122
-  attempts: 126
-  graded_attempts: 126
-  correct_rate: 0.626984126984127
-  open_mistakes: 1
+  questions_answered: 123
+  attempts: 127
+  graded_attempts: 127
+  correct_rate: 0.6220472440944882
+  open_mistakes: 2
   resolved_mistakes: 18
   repeated_mistakes: 6
   completed_reviews: 33
@@ -95,7 +95,7 @@ statistics:
     C08: 0.625
     C09: 0.5555555555555556
     C10: 0.6216216216216216
-    D01: 0.8461538461538461
+    D01: 0.7857142857142857
 study_streak:
   current: 1
   longest: 3
@@ -104,4 +104,5 @@ last_session: '2026-11-02'
 review:
   schedule:
     R0034: '2026-11-03'
-updated_at: '2026-11-02T10:47:24.543706+08:00'
+    R0035: '2026-11-03'
+updated_at: '2026-11-02T11:05:35.419483+08:00'

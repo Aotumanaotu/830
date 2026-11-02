@@ -4,7 +4,7 @@ current_course:
   chapter: 绪论
   lesson: 数据结构术语
   topic_id: D01.01
-  next_task: P0120
+  next_task: P0121
   knowledge_file: knowledge/data_structure/D01.md
 last_motivation_date: '2026-11-02'
 progress:
@@ -81,11 +81,11 @@ progress:
 statistics:
   learning_days: 10
   known_duration_minutes: 0
-  sessions_without_duration: 55
-  questions_answered: 129
-  attempts: 133
-  graded_attempts: 133
-  correct_rate: 0.631578947368421
+  sessions_without_duration: 56
+  questions_answered: 130
+  attempts: 134
+  graded_attempts: 134
+  correct_rate: 0.6343283582089553
   open_mistakes: 3
   resolved_mistakes: 18
   repeated_mistakes: 6
@@ -95,7 +95,7 @@ statistics:
     C08: 0.625
     C09: 0.5555555555555556
     C10: 0.6216216216216216
-    D01: 0.8
+    D01: 0.8095238095238095
 study_streak:
   current: 1
   longest: 3
@@ -106,4 +106,4 @@ review:
     R0034: '2026-11-03'
     R0035: '2026-11-03'
     R0036: '2026-11-03'
-updated_at: '2026-11-02T13:49:20.985745+08:00'
+updated_at: '2026-11-02T13:55:30.350350+08:00'

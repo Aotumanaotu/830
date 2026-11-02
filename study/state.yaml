@@ -4,7 +4,7 @@ current_course:
   chapter: 线性表
   lesson: 基本运算
   topic_id: D02.02
-  next_task: P0131
+  next_task: P0132
   knowledge_file: knowledge/data_structure/D02.md
 last_motivation_date: '2026-11-02'
 progress:
@@ -82,11 +82,11 @@ statistics:
   learning_days: 10
   known_duration_minutes: 0
   sessions_without_duration: 64
-  questions_answered: 140
-  attempts: 144
-  graded_attempts: 144
-  correct_rate: 0.6458333333333334
-  open_mistakes: 4
+  questions_answered: 141
+  attempts: 145
+  graded_attempts: 145
+  correct_rate: 0.6413793103448275
+  open_mistakes: 5
   resolved_mistakes: 18
   repeated_mistakes: 7
   completed_reviews: 33
@@ -96,7 +96,7 @@ statistics:
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7857142857142857
-    D02: 1.0
+    D02: 0.75
 study_streak:
   current: 1
   longest: 3
@@ -108,4 +108,5 @@ review:
     R0035: '2026-11-03'
     R0036: '2026-11-03'
     R0037: '2026-11-03'
-updated_at: '2026-11-02T16:19:03.114253+08:00'
+    R0038: '2026-11-03'
+updated_at: '2026-11-02T16:34:11.236810+08:00'

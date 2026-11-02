@@ -2,11 +2,11 @@
   "date": "2026-11-02",
   "learning_days": 10,
   "known_duration_minutes": 0,
-  "sessions_without_duration": 62,
-  "questions_answered": 138,
-  "attempts": 142,
-  "graded_attempts": 142,
-  "correct_rate": 0.6408450704225352,
+  "sessions_without_duration": 63,
+  "questions_answered": 139,
+  "attempts": 143,
+  "graded_attempts": 143,
+  "correct_rate": 0.6433566433566433,
   "open_mistakes": 4,
   "resolved_mistakes": 18,
   "repeated_mistakes": 7,
@@ -19,7 +19,7 @@
     "D01": 0.7857142857142857,
     "D02": 1.0
   },
-  "coverage": 0.13829787234042554,
+  "coverage": 0.14893617021276595,
   "mastery": 0.010638297872340425,
   "subjects": {
     "C语言": {
@@ -27,7 +27,7 @@
       "mastery": 0.018518518518518517
     },
     "数据结构": {
-      "coverage": 0.05,
+      "coverage": 0.075,
       "mastery": 0.0
     }
   },
@@ -81,7 +81,7 @@
       "mastery": 0.0
     },
     "D02": {
-      "coverage": 0.0,
+      "coverage": 0.25,
       "mastery": 0.0
     },
     "D03": {

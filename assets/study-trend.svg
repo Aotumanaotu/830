@@ -18,8 +18,8 @@
 <circle cx="104.80" cy="201.11" r="3" fill="#2563eb"><title>2026-10-09 coverage: 10.6%</title></circle>
 <circle cx="129.60" cy="199.62" r="3" fill="#2563eb"><title>2026-10-10 coverage: 11.7%</title></circle>
 <circle cx="179.20" cy="199.62" r="3" fill="#2563eb"><title>2026-10-12 coverage: 11.7%</title></circle>
-<circle cx="700.00" cy="196.64" r="3" fill="#2563eb"><title>2026-11-02 coverage: 13.8%</title></circle>
-<polyline points="80.00,202.45 104.80,201.11 129.60,199.62 179.20,199.62 700.00,196.64" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="700.00" cy="195.15" r="3" fill="#2563eb"><title>2026-11-02 coverage: 14.9%</title></circle>
+<polyline points="80.00,202.45 104.80,201.11 129.60,199.62 179.20,199.62 700.00,195.15" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <circle cx="80.00" cy="216.00" r="3" fill="#059669"><title>2026-10-08 mastery: 0.0%</title></circle>
 <circle cx="104.80" cy="214.51" r="3" fill="#059669"><title>2026-10-09 mastery: 1.1%</title></circle>
 <circle cx="129.60" cy="214.51" r="3" fill="#059669"><title>2026-10-10 mastery: 1.1%</title></circle>

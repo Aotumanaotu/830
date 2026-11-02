@@ -4,7 +4,7 @@ current_course:
   chapter: 线性表
   lesson: 定义
   topic_id: D02.01
-  next_task: P0128
+  next_task: P0129
   knowledge_file: knowledge/data_structure/D02.md
 last_motivation_date: '2026-11-02'
 progress:
@@ -81,11 +81,11 @@ progress:
 statistics:
   learning_days: 10
   known_duration_minutes: 0
-  sessions_without_duration: 61
-  questions_answered: 137
-  attempts: 141
-  graded_attempts: 141
-  correct_rate: 0.6382978723404256
+  sessions_without_duration: 62
+  questions_answered: 138
+  attempts: 142
+  graded_attempts: 142
+  correct_rate: 0.6408450704225352
   open_mistakes: 4
   resolved_mistakes: 18
   repeated_mistakes: 7
@@ -96,6 +96,7 @@ statistics:
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7857142857142857
+    D02: 1.0
 study_streak:
   current: 1
   longest: 3
@@ -107,4 +108,4 @@ review:
     R0035: '2026-11-03'
     R0036: '2026-11-03'
     R0037: '2026-11-03'
-updated_at: '2026-11-02T15:33:51.736593+08:00'
+updated_at: '2026-11-02T16:06:35.536629+08:00'

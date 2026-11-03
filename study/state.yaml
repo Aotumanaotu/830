@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: 数据结构
-  chapter: 线性表
-  lesson: 顺序存储
-  topic_id: D02.03
-  next_task: P0136
-  knowledge_file: knowledge/data_structure/D02.md
+  chapter: 绪论
+  lesson: 算法描述与分析
+  topic_id: D01.02
+  next_task: P0137
+  knowledge_file: knowledge/data_structure/D01.md
 last_motivation_date: '2026-11-03'
 progress:
   coverage: 0.1595744680851064
@@ -79,13 +79,13 @@ progress:
       coverage: 0.0
       mastery: 0.0
 statistics:
-  learning_days: 10
+  learning_days: 11
   known_duration_minutes: 0
-  sessions_without_duration: 67
-  questions_answered: 145
-  attempts: 149
-  graded_attempts: 149
-  correct_rate: 0.6442953020134228
+  sessions_without_duration: 68
+  questions_answered: 146
+  attempts: 150
+  graded_attempts: 150
+  correct_rate: 0.6466666666666666
   open_mistakes: 6
   resolved_mistakes: 18
   repeated_mistakes: 7
@@ -96,12 +96,12 @@ statistics:
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7857142857142857
-    D02: 0.75
+    D02: 0.7777777777777778
 study_streak:
-  current: 1
+  current: 2
   longest: 3
-  last_study_date: '2026-11-02'
-last_session: '2026-11-02'
+  last_study_date: '2026-11-03'
+last_session: '2026-11-03'
 review:
   schedule:
     R0034: '2026-11-03'
@@ -110,4 +110,4 @@ review:
     R0037: '2026-11-03'
     R0038: '2026-11-03'
     R0039: '2026-11-04'
-updated_at: '2026-11-03T08:56:08.841856+08:00'
+updated_at: '2026-11-03T08:59:36.917881+08:00'

@@ -1,11 +1,11 @@
 version: 2
 current_course:
   subject: 数据结构
-  chapter: 绪论
-  lesson: 数据结构术语
-  topic_id: D01.01
-  next_task: P0140
-  knowledge_file: knowledge/data_structure/D01.md
+  chapter: 线性表
+  lesson: 基本运算
+  topic_id: D02.02
+  next_task: P0141
+  knowledge_file: knowledge/data_structure/D02.md
 last_motivation_date: '2026-11-03'
 progress:
   coverage: 0.1595744680851064
@@ -81,21 +81,21 @@ progress:
 statistics:
   learning_days: 11
   known_duration_minutes: 0
-  sessions_without_duration: 71
-  questions_answered: 149
-  attempts: 153
-  graded_attempts: 153
-  correct_rate: 0.6535947712418301
+  sessions_without_duration: 72
+  questions_answered: 150
+  attempts: 154
+  graded_attempts: 154
+  correct_rate: 0.6493506493506493
   open_mistakes: 3
   resolved_mistakes: 21
   repeated_mistakes: 7
-  completed_reviews: 36
+  completed_reviews: 37
   chapter_correct_rate:
     C03: 0.5384615384615384
     C08: 0.625
     C09: 0.5555555555555556
     C10: 0.6216216216216216
-    D01: 0.8064516129032258
+    D01: 0.78125
     D02: 0.7777777777777778
 study_streak:
   current: 2
@@ -104,7 +104,7 @@ study_streak:
 last_session: '2026-11-03'
 review:
   schedule:
-    R0037: '2026-11-03'
     R0038: '2026-11-03'
     R0039: '2026-11-04'
-updated_at: '2026-11-03T11:31:44.748149+08:00'
+    R0040: '2026-11-04'
+updated_at: '2026-11-03T11:45:22.911022+08:00'

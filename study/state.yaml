@@ -2,21 +2,21 @@ version: 2
 current_course:
   subject: 数据结构
   chapter: 绪论
-  lesson: 算法描述与分析
-  topic_id: D01.02
-  next_task: P0139
+  lesson: 数据结构术语
+  topic_id: D01.01
+  next_task: P0140
   knowledge_file: knowledge/data_structure/D01.md
 last_motivation_date: '2026-11-03'
 progress:
   coverage: 0.1595744680851064
-  mastery: 0.010638297872340425
+  mastery: 0.02127659574468085
   subjects:
     C语言:
       coverage: 0.2037037037037037
       mastery: 0.018518518518518517
     数据结构:
       coverage: 0.1
-      mastery: 0.0
+      mastery: 0.025
   chapters:
     C01:
       coverage: 0.0
@@ -53,7 +53,7 @@ progress:
       mastery: 0.0
     D01:
       coverage: 1.0
-      mastery: 0.0
+      mastery: 0.5
     D02:
       coverage: 0.5
       mastery: 0.0
@@ -81,21 +81,21 @@ progress:
 statistics:
   learning_days: 11
   known_duration_minutes: 0
-  sessions_without_duration: 70
-  questions_answered: 148
-  attempts: 152
-  graded_attempts: 152
-  correct_rate: 0.6513157894736842
-  open_mistakes: 4
-  resolved_mistakes: 20
+  sessions_without_duration: 71
+  questions_answered: 149
+  attempts: 153
+  graded_attempts: 153
+  correct_rate: 0.6535947712418301
+  open_mistakes: 3
+  resolved_mistakes: 21
   repeated_mistakes: 7
-  completed_reviews: 35
+  completed_reviews: 36
   chapter_correct_rate:
     C03: 0.5384615384615384
     C08: 0.625
     C09: 0.5555555555555556
     C10: 0.6216216216216216
-    D01: 0.8
+    D01: 0.8064516129032258
     D02: 0.7777777777777778
 study_streak:
   current: 2
@@ -104,8 +104,7 @@ study_streak:
 last_session: '2026-11-03'
 review:
   schedule:
-    R0036: '2026-11-03'
     R0037: '2026-11-03'
     R0038: '2026-11-03'
     R0039: '2026-11-04'
-updated_at: '2026-11-03T10:17:51.252989+08:00'
+updated_at: '2026-11-03T11:31:44.748149+08:00'

@@ -1,12 +1,12 @@
 {
-  "date": "2026-11-03",
-  "learning_days": 11,
+  "date": "2026-11-04",
+  "learning_days": 12,
   "known_duration_minutes": 0,
-  "sessions_without_duration": 75,
-  "questions_answered": 154,
-  "attempts": 158,
-  "graded_attempts": 158,
-  "correct_rate": 0.6518987341772152,
+  "sessions_without_duration": 76,
+  "questions_answered": 155,
+  "attempts": 159,
+  "graded_attempts": 159,
+  "correct_rate": 0.6540880503144654,
   "open_mistakes": 3,
   "resolved_mistakes": 22,
   "repeated_mistakes": 7,
@@ -17,7 +17,7 @@
     "C09": 0.5555555555555556,
     "C10": 0.6216216216216216,
     "D01": 0.78125,
-    "D02": 0.7692307692307693
+    "D02": 0.7857142857142857
   },
   "coverage": 0.1595744680851064,
   "mastery": 0.031914893617021274,
@@ -113,8 +113,8 @@
       "mastery": 0.0
     }
   },
-  "current": 2,
+  "current": 3,
   "longest": 3,
-  "last_study_date": "2026-11-03",
-  "days_to_exam": 46
+  "last_study_date": "2026-11-04",
+  "days_to_exam": 45
 }

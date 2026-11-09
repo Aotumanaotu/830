@@ -15,19 +15,19 @@
 <line x1="80" y1="76" x2="700" y2="76" stroke="#e2e8f0"/>
 <text x="25" y="80" font-size="11" class="muted">100%</text>
 <circle cx="80.00" cy="202.45" r="3" fill="#2563eb"><title>2026-10-08 coverage: 9.7%</title></circle>
-<circle cx="102.14" cy="201.11" r="3" fill="#2563eb"><title>2026-10-09 coverage: 10.6%</title></circle>
-<circle cx="124.29" cy="199.62" r="3" fill="#2563eb"><title>2026-10-10 coverage: 11.7%</title></circle>
-<circle cx="168.57" cy="199.62" r="3" fill="#2563eb"><title>2026-10-12 coverage: 11.7%</title></circle>
-<circle cx="700.00" cy="193.66" r="3" fill="#2563eb"><title>2026-11-05 coverage: 16.0%</title></circle>
-<polyline points="80.00,202.45 102.14,201.11 124.29,199.62 168.57,199.62 700.00,193.66" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="99.38" cy="201.11" r="3" fill="#2563eb"><title>2026-10-09 coverage: 10.6%</title></circle>
+<circle cx="118.75" cy="199.62" r="3" fill="#2563eb"><title>2026-10-10 coverage: 11.7%</title></circle>
+<circle cx="157.50" cy="199.62" r="3" fill="#2563eb"><title>2026-10-12 coverage: 11.7%</title></circle>
+<circle cx="700.00" cy="193.66" r="3" fill="#2563eb"><title>2026-11-09 coverage: 16.0%</title></circle>
+<polyline points="80.00,202.45 99.38,201.11 118.75,199.62 157.50,199.62 700.00,193.66" fill="none" stroke="#2563eb" stroke-width="2.5"/>
 <circle cx="80.00" cy="216.00" r="3" fill="#059669"><title>2026-10-08 mastery: 0.0%</title></circle>
-<circle cx="102.14" cy="214.51" r="3" fill="#059669"><title>2026-10-09 mastery: 1.1%</title></circle>
-<circle cx="124.29" cy="214.51" r="3" fill="#059669"><title>2026-10-10 mastery: 1.1%</title></circle>
-<circle cx="168.57" cy="214.51" r="3" fill="#059669"><title>2026-10-12 mastery: 1.1%</title></circle>
-<circle cx="700.00" cy="210.04" r="3" fill="#059669"><title>2026-11-05 mastery: 4.3%</title></circle>
-<polyline points="80.00,216.00 102.14,214.51 124.29,214.51 168.57,214.51 700.00,210.04" fill="none" stroke="#059669" stroke-width="2.5"/>
+<circle cx="99.38" cy="214.51" r="3" fill="#059669"><title>2026-10-09 mastery: 1.1%</title></circle>
+<circle cx="118.75" cy="214.51" r="3" fill="#059669"><title>2026-10-10 mastery: 1.1%</title></circle>
+<circle cx="157.50" cy="214.51" r="3" fill="#059669"><title>2026-10-12 mastery: 1.1%</title></circle>
+<circle cx="700.00" cy="210.04" r="3" fill="#059669"><title>2026-11-09 mastery: 4.3%</title></circle>
+<polyline points="80.00,216.00 99.38,214.51 118.75,214.51 157.50,214.51 700.00,210.04" fill="none" stroke="#059669" stroke-width="2.5"/>
 <text x="80.00" y="240" text-anchor="middle" font-size="12" class="muted">2026-10-08</text>
-<text x="700.00" y="240" text-anchor="middle" font-size="12" class="muted">2026-11-05</text>
+<text x="700.00" y="240" text-anchor="middle" font-size="12" class="muted">2026-11-09</text>
 <text x="80" y="273" font-size="13" class="blue">● 已讲解覆盖</text>
 <text x="240" y="273" font-size="13" class="green">● 稳定掌握</text>
 </svg>

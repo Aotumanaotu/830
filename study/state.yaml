@@ -4,9 +4,9 @@ current_course:
   chapter: 线性表
   lesson: 顺序存储
   topic_id: D02.03
-  next_task: P0149
+  next_task: P0150
   knowledge_file: knowledge/data_structure/D02.md
-last_motivation_date: '2026-11-05'
+last_motivation_date: '2026-11-09'
 progress:
   coverage: 0.1595744680851064
   mastery: 0.0425531914893617
@@ -82,11 +82,11 @@ statistics:
   learning_days: 13
   known_duration_minutes: 0
   sessions_without_duration: 79
-  questions_answered: 158
-  attempts: 162
-  graded_attempts: 162
-  correct_rate: 0.6604938271604939
-  open_mistakes: 0
+  questions_answered: 159
+  attempts: 163
+  graded_attempts: 163
+  correct_rate: 0.656441717791411
+  open_mistakes: 1
   resolved_mistakes: 25
   repeated_mistakes: 7
   completed_reviews: 41
@@ -96,12 +96,13 @@ statistics:
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7878787878787878
-    D02: 0.8125
+    D02: 0.7647058823529411
 study_streak:
-  current: 4
+  current: 0
   longest: 4
   last_study_date: '2026-11-05'
 last_session: '2026-11-05'
 review:
-  schedule: {}
-updated_at: '2026-11-05T09:12:51.267052+08:00'
+  schedule:
+    R0042: '2026-11-10'
+updated_at: '2026-11-09T10:05:10.709214+08:00'

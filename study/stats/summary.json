@@ -3,13 +3,13 @@
   "learning_days": 14,
   "known_duration_minutes": 0,
   "sessions_without_duration": 81,
-  "questions_answered": 165,
-  "attempts": 169,
-  "graded_attempts": 169,
-  "correct_rate": 0.6568047337278107,
+  "questions_answered": 166,
+  "attempts": 170,
+  "graded_attempts": 170,
+  "correct_rate": 0.6529411764705882,
   "open_mistakes": 2,
   "resolved_mistakes": 25,
-  "repeated_mistakes": 8,
+  "repeated_mistakes": 9,
   "completed_reviews": 41,
   "chapter_correct_rate": {
     "C03": 0.5384615384615384,
@@ -17,7 +17,7 @@
     "C09": 0.5555555555555556,
     "C10": 0.6216216216216216,
     "D01": 0.7878787878787878,
-    "D02": 0.7391304347826086
+    "D02": 0.7083333333333334
   },
   "coverage": 0.1595744680851064,
   "mastery": 0.0425531914893617,

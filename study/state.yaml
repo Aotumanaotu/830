@@ -2,21 +2,21 @@ version: 2
 current_course:
   subject: 数据结构
   chapter: 线性表
-  lesson: 顺序存储
-  topic_id: D02.03
-  next_task: P0173
+  lesson: 链式存储
+  topic_id: D02.04
+  next_task: P0174
   knowledge_file: knowledge/data_structure/D02.md
-last_motivation_date: '2026-11-11'
+last_motivation_date: '2026-11-13'
 progress:
   coverage: 0.1702127659574468
-  mastery: 0.0425531914893617
+  mastery: 0.05319148936170213
   subjects:
     C语言:
       coverage: 0.2037037037037037
       mastery: 0.018518518518518517
     数据结构:
       coverage: 0.125
-      mastery: 0.075
+      mastery: 0.1
   chapters:
     C01:
       coverage: 0.0
@@ -56,7 +56,7 @@ progress:
       mastery: 1.0
     D02:
       coverage: 0.75
-      mastery: 0.25
+      mastery: 0.5
     D03:
       coverage: 0.0
       mastery: 0.0
@@ -79,33 +79,31 @@ progress:
       coverage: 0.0
       mastery: 0.0
 statistics:
-  learning_days: 16
+  learning_days: 17
   known_duration_minutes: 0
-  sessions_without_duration: 91
-  questions_answered: 182
-  attempts: 186
-  graded_attempts: 186
-  correct_rate: 0.6505376344086021
-  open_mistakes: 4
-  resolved_mistakes: 26
+  sessions_without_duration: 92
+  questions_answered: 183
+  attempts: 187
+  graded_attempts: 187
+  correct_rate: 0.6524064171122995
+  open_mistakes: 2
+  resolved_mistakes: 28
   repeated_mistakes: 9
-  completed_reviews: 43
+  completed_reviews: 45
   chapter_correct_rate:
     C03: 0.5384615384615384
     C08: 0.625
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7878787878787878
-    D02: 0.675
+    D02: 0.6829268292682927
 study_streak:
-  current: 3
+  current: 1
   longest: 4
-  last_study_date: '2026-11-11'
-last_session: '2026-11-11'
+  last_study_date: '2026-11-13'
+last_session: '2026-11-13'
 review:
   schedule:
-    R0044: '2026-11-11'
-    R0045: '2026-11-11'
     R0046: '2026-11-11'
     R0047: '2026-11-11'
-updated_at: '2026-11-11T09:11:27.275688+08:00'
+updated_at: '2026-11-13T09:07:50.593186+08:00'

@@ -6,7 +6,7 @@ current_course:
   topic_id: D02.04
   next_task: P0174
   knowledge_file: knowledge/data_structure/D02.md
-last_motivation_date: '2026-11-13'
+last_motivation_date: '2026-11-19'
 progress:
   coverage: 0.1702127659574468
   mastery: 0.05319148936170213
@@ -82,10 +82,10 @@ statistics:
   learning_days: 17
   known_duration_minutes: 0
   sessions_without_duration: 92
-  questions_answered: 183
-  attempts: 187
-  graded_attempts: 187
-  correct_rate: 0.6524064171122995
+  questions_answered: 184
+  attempts: 188
+  graded_attempts: 188
+  correct_rate: 0.648936170212766
   open_mistakes: 2
   resolved_mistakes: 28
   repeated_mistakes: 9
@@ -96,9 +96,9 @@ statistics:
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7878787878787878
-    D02: 0.6829268292682927
+    D02: 0.6666666666666666
 study_streak:
-  current: 1
+  current: 0
   longest: 4
   last_study_date: '2026-11-13'
 last_session: '2026-11-13'
@@ -106,4 +106,4 @@ review:
   schedule:
     R0046: '2026-11-11'
     R0047: '2026-11-11'
-updated_at: '2026-11-13T09:07:50.593186+08:00'
+updated_at: '2026-11-19T18:03:31.668587+08:00'

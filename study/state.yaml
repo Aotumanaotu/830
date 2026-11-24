@@ -4,7 +4,7 @@ current_course:
   chapter: 线性表
   lesson: 链式存储
   topic_id: D02.04
-  next_task: P0177
+  next_task: P0178
   knowledge_file: knowledge/data_structure/D02.md
 last_motivation_date: '2026-11-24'
 progress:
@@ -82,11 +82,11 @@ statistics:
   learning_days: 19
   known_duration_minutes: 0
   sessions_without_duration: 94
-  questions_answered: 186
-  attempts: 191
-  graded_attempts: 191
-  correct_rate: 0.643979057591623
-  open_mistakes: 1
+  questions_answered: 187
+  attempts: 192
+  graded_attempts: 192
+  correct_rate: 0.640625
+  open_mistakes: 2
   resolved_mistakes: 30
   repeated_mistakes: 10
   completed_reviews: 48
@@ -96,7 +96,7 @@ statistics:
     C09: 0.5555555555555556
     C10: 0.6216216216216216
     D01: 0.7878787878787878
-    D02: 0.6444444444444445
+    D02: 0.6304347826086957
 study_streak:
   current: 1
   longest: 4
@@ -105,4 +105,5 @@ last_session: '2026-11-24'
 review:
   schedule:
     R0049: '2026-11-25'
-updated_at: '2026-11-24T11:52:25.245344+08:00'
+    R0050: '2026-11-25'
+updated_at: '2026-11-24T12:05:29.952184+08:00'
